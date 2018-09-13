@@ -6,7 +6,7 @@
 // - describe what you did to take this project "above and beyond"
 
 function setup() {
-    song = loadSound('downloads/Very High Pitch Sound!.mp3')
+    song = loadSound('Very High Pitch Sound!.mp3')
     createCanvas(windowWidth, windowHeight);
     background(255);
 }
