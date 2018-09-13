@@ -15,7 +15,7 @@ function draw() {
   if (mouseIsPressed){
     if (keyIsDown(69)){
       ellipse(mouseX, mouseY, 50, 50);
-      song.play();
+
     }
     if (keyIsDown(82)){
       rect(mouseX, mouseY, 50, 80)
@@ -43,5 +43,8 @@ function keyPressed() {
   }
   else if (keyCode === 71){
     fill(0, 0, 255);
+  }
+  else if (keyCode === 32){
+    song.play();
   }
 }
