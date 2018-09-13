@@ -6,9 +6,14 @@
 // - describe what you did to take this project "above and beyond"
 
 function setup() {
-    song = loadSound('assets/Very High Pitch Sound!.mp3')
+    mySound.setVolume(0.1);
+    mySound.play();
     createCanvas(windowWidth, windowHeight);
     background(255);
+}
+function preload() {
+  soundFormats('mp3', 'ogg');
+  song = loadSound('assets/Very High Pitch Sound!.mp3')
 }
 
 function draw() {
