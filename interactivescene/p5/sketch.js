@@ -15,7 +15,7 @@ function draw() {
   if (mouseIsPressed){
     if (keyIsDown(69)){
       ellipse(mouseX, mouseY, 50, 50);
-      song.play()
+      song.play();
     }
     if (keyIsDown(82)){
       rect(mouseX, mouseY, 50, 80)
