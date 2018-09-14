@@ -23,15 +23,14 @@ function draw() {
 
     }
     if (keyIsDown(82)){
-      rect(mouseX, mouseY, 50, 80)
+      rect(mouseX, mouseY, 50, 80);
     }
-    if (keyIsDown(81)){
-      ellipse(mouseX, mouseY, 20, 20)
+    if (keyIsDown(49)){
+      ellipse(mouseX, mouseY, 20, 20);
     }
+
   }
-  else if (keyIsDown(87)){
-    background(255);
-  }
+
   else if (keyIsDown(66)){
     background(0);
   }
