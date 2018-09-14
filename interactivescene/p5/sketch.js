@@ -6,16 +6,10 @@
 // - describe what you did to take this project "above and beyond"
 
 function setup() {
-    mySound.setVolume(0.1);
-    mySound.play();
     createCanvas(windowWidth, windowHeight);
     background(255);
 }
-function preload() {
-  soundFormats('mp3', 'ogg');
-  song = loadSound('assets/Very High Pitch Sound!.mp3')
-}
-
+//shape
 function draw() {
   if (mouseIsPressed){
     if (keyIsDown(69)){
@@ -26,15 +20,18 @@ function draw() {
       rect(mouseX, mouseY, 50, 80);
     }
     if (keyIsDown(81)){
-      ellipse(mouseX, mouseY, 20, 20);
+      ellipse(mouseX, mouseY, 25, 25);
     }
-
   }
 
   else if (keyIsDown(66)){
     background(0);
   }
+  else if (keyIsDown(87)){
+    background(255);
+  }
 }
+//color picker
 function keyPressed() {
   if (keyCode === 76){
     fill(0, 255, 0);
@@ -50,8 +47,5 @@ function keyPressed() {
   }
   else if (keyCode === 71){
     fill(0, 0, 255);
-  }
-  else if (keyCode === 32){
-    song.play();
   }
 }
