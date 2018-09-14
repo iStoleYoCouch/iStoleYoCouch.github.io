@@ -26,7 +26,7 @@ function draw() {
       rect(mouseX, mouseY, 50, 80)
     }
     if (keyIsDown(81)){
-      ellipse(mouseX,mouseY, 10, 10)
+      ellipse(mouseX,mouseY, 20, 20)
     }
   }
   else if (keyIsDown(87)){
