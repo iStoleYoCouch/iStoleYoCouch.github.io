@@ -6,21 +6,18 @@
 // - describe what you did to take this project "above and beyond"
 
 function setup() {
+    soundFormats('mp3', 'ogg');
+    song = loadSound('p5/Very High Pitch Sound!.mp3');
     mySound.setVolume(0.1);
     mySound.play();
     createCanvas(windowWidth, windowHeight);
     background(255);
-}
-function preload() {
-  soundFormats('mp3', 'ogg');
-  song = loadSound('p5/Very High Pitch Sound!.mp3')
-}
+  }
 
 function draw() {
   if (mouseIsPressed){
     if (keyIsDown(69)){
       ellipse(mouseX, mouseY, 50, 50);
-
     }
     if (keyIsDown(82)){
       rect(mouseX, mouseY, 50, 80);
