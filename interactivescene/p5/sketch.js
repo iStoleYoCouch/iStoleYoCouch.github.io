@@ -19,7 +19,7 @@ function preload() {
 function draw() {
   if (mouseIsPressed){
     if (keyIsDown(69)){
-      ellipse(mouseX, mouseY, 25, 25);
+      ellipse(mouseX, mouseY, 50, 500);
 
     }
     if (keyIsDown(82)){
