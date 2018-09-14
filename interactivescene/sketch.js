@@ -6,6 +6,8 @@
 // - describe what you did to take this project "above and beyond"
 
 function setup() {
+    soundFormats("mp3");
+    song = loadSound("service-bell_daniel_simion.mp3");
     createCanvas(windowWidth, windowHeight);
     background(255);
 }
@@ -15,8 +17,14 @@ function draw() {
     if (keyIsDown(69)){
       ellipse(mouseX, mouseY, 50, 50);
     }
+    if (keyIsDown(77)){
+      song.play();
+    }
     if (keyIsDown(82)){
-      rect(mouseX, mouseY, 50, 80)
+      rect(mouseX, mouseY, 50, 80);
+    }
+    if (keyIsDown(81)){
+      ellipse(mouseX, mouseY, 10, 10);
     }
   }
   else if (keyIsDown(87)){
@@ -42,4 +50,5 @@ function keyPressed() {
   else if (keyCode === 71){
     fill(0, 0, 255);
   }
+
 }
