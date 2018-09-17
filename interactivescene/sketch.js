@@ -5,9 +5,16 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+let song;
+
+function preload(){
+  soundFormats("mp3");
+  song = loadSound("assets/horrible.mp3");
+
+}
+
 function setup() {
-    soundFormats("mp3");
-    song = loadSound("assets/horrible.mp3");
+
     createCanvas(windowWidth, windowHeight);
     background(255);
 }
