@@ -20,7 +20,7 @@ function draw() {
     }
     //if (keyIsDown(77)){
       //song.play();
-    }
+    //}
     if (keyIsDown(82)){
       rect(mouseX, mouseY, 50, 80);
     }
