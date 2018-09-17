@@ -14,7 +14,7 @@ function setup() {
 
 function draw() {
   if (mouseIsPressed){
-    //song.play();
+    song.play();
     if (keyIsDown(69)){
       ellipse(mouseX, mouseY, 50, 50);
     }
