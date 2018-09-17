@@ -7,18 +7,19 @@
 
 function setup() {
     soundFormats("mp3");
-    song = loadSound("service-bell_daniel_simion.mp3");
+    song = loadSound("assets/Very High Pitch Sound!.mp3");
     createCanvas(windowWidth, windowHeight);
     background(255);
 }
 
 function draw() {
   if (mouseIsPressed){
+    song.play();
     if (keyIsDown(69)){
       ellipse(mouseX, mouseY, 50, 50);
     }
-    if (keyIsDown(77)){
-      song.play();
+    //if (keyIsDown(77)){
+      //song.play();
     }
     if (keyIsDown(82)){
       rect(mouseX, mouseY, 50, 80);
