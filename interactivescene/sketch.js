@@ -7,7 +7,7 @@
 
 function setup() {
     soundFormats("mp3");
-    song = loadSound("assets/Very High Pitch Sound!.mp3");
+    song = loadSound("assets/horrible.mp3");
     createCanvas(windowWidth, windowHeight);
     background(255);
 }
