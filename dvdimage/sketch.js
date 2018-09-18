@@ -11,7 +11,7 @@ let dx, dy;
 
 
 function preload(){
-  dvd = loadImage("assets/dvd.jfif");
+  dvd = loadImage("assets/dvd");
 }
 
 function setup() {
