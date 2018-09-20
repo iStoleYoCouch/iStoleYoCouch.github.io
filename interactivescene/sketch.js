@@ -24,19 +24,14 @@ function setup() {
 
 
 function draw() {
-  if (mouseIsPressed){
-    if (keyIsDown(69)){
-      ellipse(mouseX, mouseY, scalar, scalar);
-      song.play();
-    }
-    if (keyIsDown(82)){
-      rect(mouseX, mouseY, 50, 80);
-    }
-    if (keyIsDown(81)){
-      ellipse(mouseX, mouseY, 10, 10);
-    }
+  if (mouseIsPressed === true){
+  ellipse(mouseX, mouseY, scalar, scalar);
+  song.play();
   }
-  else if (keyIsDown(87)){
+  else{
+    song.stop();
+  }
+  if (keyIsDown(87)){
     background(255);
   }
   else if (keyIsDown(66)){
@@ -45,21 +40,21 @@ function draw() {
 }
 
 
-
+// change colors
 function keyPressed() {
-  if (keyCode === 76){
+  if (keyCode === 76){     //L = Green
     fill(0, 255, 0);
   }
-  else if (keyCode === 75){
+  else if (keyCode === 75){  // K = red
     fill(255, 0, 0);
   }
-  else if (keyCode === 74){
+  else if (keyCode === 74){  // J = white
     fill(255);
   }
-  else if (keyCode === 72){
+  else if (keyCode === 72){ // H = black
     fill(0);
   }
-  else if (keyCode === 71){
+  else if (keyCode === 71){ // G = Blue
     fill(0, 0, 255);
   }
 
