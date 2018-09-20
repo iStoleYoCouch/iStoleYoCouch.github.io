@@ -6,6 +6,7 @@
 // - describe what you did to take this project "above and beyond"
 
 let song;
+let scalar;
 
 function preload(){
   soundFormats("mp3");
@@ -17,16 +18,16 @@ function setup() {
 
     createCanvas(windowWidth, windowHeight);
     background(255);
+    scalar = 50;
 }
+
+
 
 function draw() {
   if (mouseIsPressed){
-    song.play();
     if (keyIsDown(69)){
-      ellipse(mouseX, mouseY, 50, 50);
-    }
-    if (keyIsDown(77)){
-     song.play();
+      ellipse(mouseX, mouseY, scalar, scalar);
+      song.play();
     }
     if (keyIsDown(82)){
       rect(mouseX, mouseY, 50, 80);
@@ -42,6 +43,9 @@ function draw() {
     background(0);
   }
 }
+
+
+
 function keyPressed() {
   if (keyCode === 76){
     fill(0, 255, 0);
@@ -59,4 +63,13 @@ function keyPressed() {
     fill(0, 0, 255);
   }
 
+}
+
+function mouseWheel(event){
+  if (event.delta < 0 && scalar < 100){
+    scalar *= 1.1;
+  }
+  else if (event.delta > 0 && scalar > 10){
+    scalar *= 0.9;
+  }
 }
