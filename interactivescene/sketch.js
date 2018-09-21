@@ -11,6 +11,7 @@ let scalar;
 function preload(){
   soundFormats("mp3");
   song = loadSound("assets/horrible.mp3");
+  textSound = loadSound("assets/textsound.mp3")
 
 }
 
@@ -44,18 +45,23 @@ function draw() {
 function keyPressed() {
   if (keyCode === 76){     //L = Green
     fill(0, 255, 0);
+    textSound.play();
   }
   else if (keyCode === 75){  // K = red
     fill(255, 0, 0);
+    textSound.play();
   }
   else if (keyCode === 74){  // J = white
     fill(255);
+    textSound.play();
   }
   else if (keyCode === 72){ // H = black
     fill(0);
+    textSound.play();
   }
   else if (keyCode === 71){ // G = Blue
     fill(0, 0, 255);
+    textSound.play();
   }
 
 }
