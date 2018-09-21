@@ -1,11 +1,13 @@
-// Project Title
-// Your Name
-// Date
+// A really bad drawing project
+// Brett sane
+// 9/23/18
 //
+//DO NOT WEAR HEADPHONES!!!!!!!!!!!!!!!
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// - added sound
 
 let song;
+let textSound;
 let scalar;
 
 function preload(){
