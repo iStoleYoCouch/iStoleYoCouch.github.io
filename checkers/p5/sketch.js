@@ -27,73 +27,106 @@ function setup() {
 }
 
 function draw() {
-  background(235);
-  mainMenu();
-  // checkState();
-  gameBoard();
+  //background(235);
+  //mainMenu();
+  state = 1;
+  checkState();
+  //gameBoard();
   redPeices();
   blackPeices();
 
 
 }
 
-// function checkState(){
-//   if (state === 1){
-//
-//   }
-// }
+function checkState(){
+  if (state === 1){
+    mainMenu();
+  }
+  if (state === 2){
+    gameBoard();
+  }
+}
 
 function mainMenu(){
-  rect(0, 0, width, height);
-  
+  x = 800;
+  y = 800;
+  fill(255, 0, 0);
+  rect(0, 0, x, y);
+
+  fill(0);
+  rect(300, 350, 200, 100);
+  if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){
+    fill(0, 255, 0);
+    rect(300, 350, 200, 100);
+
+    if (mouseIsPressed){
+      state = 2;
+    }
+
+  }
+
+}
+
+function mouseClicked(){
+  if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){
+    state = 2;
+  }
 }
 
 
 
 function gameBoard(){
-  for (let i = 0; i < height; i++){
-    for (let j = 0; j < width; j++){
+  if (state === 2){
+    for (let i = 0; i < height; i++){
+      for (let j = 0; j < width; j++){
 
-      if (isFilledWithBlack){
-        fill(0);
+        if (isFilledWithBlack){
+          fill(0);
+        }
+
+        else{
+          fill(255);
+
+        }
+        rect(i*w, j*h, w, h);
+        isFilledWithBlack = !isFilledWithBlack;
+
+
       }
-
-      else{
-        fill(255);
-
-      }
-      rect(i*w, j*h, w, h);
       isFilledWithBlack = !isFilledWithBlack;
-
-
     }
-    isFilledWithBlack = !isFilledWithBlack;
   }
 }
 
+
+
+
 function redPeices(){
-  rx = width/4;
-  rx2 = width/4;
-  y = 50;
-  y2 = 150;
-  for(let i = 0; i < 4; i ++){
-    fill(255, 0, 0);
-    noStroke();
-    ellipse(rx*i + y, 50, 100, 100);
-    ellipse(rx2*i + y2, 150, 100, 100);
+  if (state === 2){
+    rx = width/4;
+    rx2 = width/4;
+    y = 50;
+    y2 = 150;
+    for(let i = 0; i < 4; i ++){
+      fill(255, 0, 0);
+      noStroke();
+      ellipse(rx*i + y, 50, 100, 100);
+      ellipse(rx2*i + y2, 150, 100, 100);
+    }
   }
 }
 
 function blackPeices(){
-  x = width/4;
-  x2 = width/4;
-  y = 50;
-  y2 = 150;
-  for(let i = 0; i < 4; i ++){
-    fill(100, 100, 100);
-    noStroke();
-    ellipse(x*i + y, 750, 100, 100);
-    ellipse(x2*i + y2, 650, 100, 100);
-
+  if (state === 2){
+    x = width/4;
+    x2 = width/4;
+    y = 50;
+    y2 = 150;
+    for(let i = 0; i < 4; i ++){
+      fill(100, 100, 100);
+      noStroke();
+      ellipse(x*i + y, 750, 100, 100);
+      ellipse(x2*i + y2, 650, 100, 100);
+    }
   }
 }
