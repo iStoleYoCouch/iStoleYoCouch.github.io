@@ -1,5 +1,5 @@
 // Project Title
-// Your Name
+// Brett Sane
 // Date
 //
 // Extra for Experts:
@@ -20,18 +20,18 @@ let isFilledWithBlack;
 
 function setup() {
   createCanvas(800, 800);
-  h = height/8;
+  h = height/8;                 //setup
   w = width/8;
   isFilledWithBlack = false;
+  state = 1;
 
 }
 
 function draw() {
   //background(235);
   //mainMenu();
-  state = 1;
   checkState();
-  //gameBoard();
+  //gameBoard();      //draw loop
   redPeices();
   blackPeices();
 
@@ -39,7 +39,7 @@ function draw() {
 }
 
 function checkState(){
-  if (state === 1){
+  if (state === 1){       //checks what state you are in
     mainMenu();
   }
   if (state === 2){
@@ -50,25 +50,35 @@ function checkState(){
 function mainMenu(){
   x = 800;
   y = 800;
-  fill(255, 0, 0);
+  fill(255, 0, 0);       //background
   rect(0, 0, x, y);
 
+
+
+
   fill(0);
-  rect(300, 350, 200, 100);
+  rect(300, 350, 200, 100);   //button
+
+  fill(255);
+  textSize(50);                 //play text
+  text("Play!", 350, 420);
+
   if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){
     fill(0, 255, 0);
-    rect(300, 350, 200, 100);
+    rect(300, 350, 200, 100);       //changes the color of button
 
-    if (mouseIsPressed){
-      state = 2;
-    }
+
+    fill(255);
+    textSize(50);
+    text("Play!", 350, 420);      //play text
+
 
   }
 
 }
 
 function mouseClicked(){
-  if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){
+  if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){    // if you click the button, the state changes
     state = 2;
   }
 }
@@ -78,7 +88,7 @@ function mouseClicked(){
 function gameBoard(){
   if (state === 2){
     for (let i = 0; i < height; i++){
-      for (let j = 0; j < width; j++){
+      for (let j = 0; j < width; j++){    //draws the checker board
 
         if (isFilledWithBlack){
           fill(0);
@@ -105,7 +115,7 @@ function redPeices(){
   if (state === 2){
     rx = width/4;
     rx2 = width/4;
-    y = 50;
+    y = 50;                         //Draws the red peices
     y2 = 150;
     for(let i = 0; i < 4; i ++){
       fill(255, 0, 0);
@@ -119,7 +129,7 @@ function redPeices(){
 function blackPeices(){
   if (state === 2){
     x = width/4;
-    x2 = width/4;
+    x2 = width/4;                   //draws the black peices
     y = 50;
     y2 = 150;
     for(let i = 0; i < 4; i ++){
