@@ -6,16 +6,11 @@
 // - describe what you did to take this project "above and beyond"
 
 let state;
-let x;
-let y;
-let dx;
-let dy;
-let x2;
-let y2;
-let rx;
-let rx2;
-let h;
-let w;
+let x, y;
+let dx, dy;
+let x2, y2;
+let rx, rx2;
+let h, w;
 let isFilledWithBlack;
 
 function setup() {
@@ -124,8 +119,8 @@ function redPeices(){
     for(let i = 0; i < 4; i ++){
       fill(255, 0, 0);
       noStroke();
-      ellipse(rx*i + y, 50, 100, 100);
-      ellipse(rx2*i + y2, 150, 100, 100);
+      ellipse(rx*i + y, 150, 100, 100);
+      ellipse(rx2*i + y2, 50, 100, 100);
     }
   }
 }
