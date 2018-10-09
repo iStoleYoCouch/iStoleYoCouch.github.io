@@ -50,27 +50,31 @@ function checkState(){
 function mainMenu(){
   x = 800;
   y = 800;
-  fill(255, 0, 0);       //background
+  fill(255, 125, 125);       //background
   rect(0, 0, x, y);
+
+  fill(0);
+  textSize(125);              //Title
+  text("Checkers", 100, 100);
 
 
 
 
   fill(0);
-  rect(300, 350, 200, 100);   //button
+  rect(300, 350, 150, 100);   //button
 
   fill(255);
   textSize(50);                 //play text
-  text("Play!", 350, 420);
+  text("Play!", 320, 420);
 
   if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){
     fill(0, 255, 0);
-    rect(300, 350, 200, 100);       //changes the color of button
+    rect(300, 350, 150, 100);       //changes the color of button
 
 
     fill(255);
     textSize(50);
-    text("Play!", 350, 420);      //play text
+    text("Play!", 320, 420);      //play text
 
 
   }
