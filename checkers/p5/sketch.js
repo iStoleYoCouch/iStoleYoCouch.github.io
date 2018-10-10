@@ -7,7 +7,6 @@
 
 let state;
 let x, y;
-let dx, dy;
 let x2, y2;
 let rx, rx2;
 let h, w;
