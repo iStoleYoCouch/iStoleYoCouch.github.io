@@ -11,6 +11,11 @@ let x2, y2;
 let rx, rx2;
 let h, w;
 let isFilledWithBlack;
+let picture;
+
+function preload() {
+  picture = loadImage("assets/checkerboard.png");
+}
 
 function setup() {
   createCanvas(800, 800);
@@ -50,6 +55,9 @@ function mainMenu(){
   fill(0);
   textSize(125);              //Title
   text("Checkers", 100, 100);
+
+
+  image(picture, 350, 500);   //checkers PNG
 
 
 
