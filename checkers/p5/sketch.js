@@ -86,8 +86,8 @@ function mouseClicked(){
 
 function gameBoard(){
   if (state === 2){
-    for (let i = 0; i < height; i++){
-      for (let j = 0; j < width; j++){    //draws the checker board
+    for (let i = 0; i < 800; i++){
+      for (let j = 0; j < 800; j++){    //draws the checker board
 
         if (isFilledWithBlack){
           fill(0);
