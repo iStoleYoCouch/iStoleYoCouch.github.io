@@ -7,6 +7,7 @@
 
 let state;
 let x, y;
+let dx, dy;
 let x2, y2;
 let rx, rx2;
 let h, w;
@@ -46,7 +47,7 @@ function draw() {
   // redPeices();
   // blackPeices();
 
-
+  console.log(state);
 }
 
 
@@ -66,7 +67,26 @@ function checkState(){
 
   }
   if (state === 3){
+    console.log("here!");
     selectRed();
+  }
+  if (state === 4){
+    dx = 650;
+    dy = 150;
+    console.log("state 4");
+    dx = dx - 100;
+    dy = dy + 100;
+    fill(255, 0, 0);
+    ellipse(dx, dy, 100, 100);
+  }
+  if (state ===5){
+    dx = 650;
+    dy = 150;
+    console.log("state 5");
+    dx = dx + 100;
+    dy = dy + 100;
+    fill(255, 0, 0);
+    ellipse(dx, dy, 100, 100);
   }
 }
 
@@ -165,8 +185,26 @@ function gameBoard(){
 ////////////////////////////////////////////////////////
 
 function selectRed(){
+  dx = 650;
+  dy = 150;
   fill(0, 255, 0);
-  ellipse(650, 150, 100, 100);
+  ellipse(dx, dy, 100, 100);
+  if (state === 3){
+    if (mouseClicked() && (mouseX >= dx + 50 && mouseX <= dx + 150) && (mouseY >= dy + 50 && mouseY <= dy + 150)){
+      state = 5;
+      // dx = dx + 100;
+      // dy = dy + 100;
+      // fill(255, 0, 0);
+      // ellipse(dx, dy, 100, 100);
+    }
+    else if (mouseClicked() && (mouseX >= 500 && mouseX <= 600) && (mouseY >= 200 && mouseY <= 300)){
+      state = 4;
+      // dx = dx - 100;
+      // dy = dy + 100;
+      // fill(255, 0, 0);
+      // ellipse(dx, dy, 100, 100);
+    }
+  }
 }
 
 
