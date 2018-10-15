@@ -64,30 +64,66 @@ function checkState(){
     gameBoard();
     redPeices();
     blackPeices();
+    console.log("state 2");
 
   }
   if (state === 3){
-    console.log("here!");
     selectRed();
   }
+
+  if (state === 5){
+    selectBlack();
+  }
+
+
   if (state === 4){
-    dx = 650;
-    dy = 150;
-    console.log("state 4");
-    dx = dx - 100;
-    dy = dy + 100;
-    fill(255, 0, 0);
-    ellipse(dx, dy, 100, 100);
+    if (mouseX >= dx + 50 && mouseX <= dx + 150 && (mouseY >= dy + 50 && mouseY <= dy + 150)) {
+      dx = 650;
+      dy = 150;
+      dx = dx + 100;
+      dy = dy + 100;
+      fill(255, 0, 0);
+      ellipse(dx, dy, 100, 100);
+      state = 3;
+    }
+    if (mouseX >= 500 && mouseX <= 600 && (mouseY >= 200 && mouseY <= 300)){
+      dx = 650;
+      dy = 150;
+      dx = dx - 100;
+      dy = dy + 100;
+      fill(255, 0, 0);
+      ellipse(dx, dy, 100, 100);
+      state = 3;
+    }
+    fill(0);
+    rect(600, 100, 100, 100);
   }
-  if (state ===5){
-    dx = 650;
-    dy = 150;
-    console.log("state 5");
-    dx = dx + 100;
-    dy = dy + 100;
-    fill(255, 0, 0);
-    ellipse(dx, dy, 100, 100);
+
+
+
+  if (state === 6){
+    if (mouseX >= dx + 50 && mouseX <= dx + 150 && (mouseY >= dy - 50 && mouseY <= dy - 150)) {
+      dx = 450;
+      dy = 550;
+      dx = dx + 100;
+      dy = dy + 100;
+      fill(255, 0, 0);
+      ellipse(dx, dy, 100, 100);
+      state = 5;
+    }
+    if (mouseX >= 500 && mouseX <= 600 && (mouseY >= 200 && mouseY <= 300)){
+      dx = 650;
+      dy = 550;
+      dx = dx - 100;
+      dy = dy + 100;
+      fill(255, 0, 0);
+      ellipse(dx, dy, 100, 100);
+      state = 5;
+    }
+    fill(0);
+    rect(600, 100, 100, 100);
   }
+
 }
 
 
@@ -138,7 +174,7 @@ function mainMenu(){
 
 
 
-function mouseClicked(){
+function mousePressed(){
   if (state === 1){
     if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){    // if you click the button, the state changes
       state = 2;
@@ -146,9 +182,34 @@ function mouseClicked(){
   }
 
 
-  if (state ===2){
+  if (state === 2){
     if (mouseX >= 600 && mouseX <= 700 && mouseY >= 100 && mouseY <= 300){
       state = 3;
+    }
+    if (mouseX >= 500 && mouseX <= 600 && mouseY >= 600 && mouseY <= 700){
+      state = 5;
+    }
+  }
+  if (state === 3){
+    if (mouseX >= dx + 50 && mouseX <= dx + 150 && (mouseY >= dy + 50 && mouseY <= dy + 150)){
+      state = 4;
+      // dx = dx + 100;
+      // dy = dy + 100;
+      // fill(255, 0, 0);
+      // ellipse(dx, dy, 100, 100);
+    }
+    else if (mouseX >= 500 && mouseX <= 600 && (mouseY >= 200 && mouseY <= 300)){
+      state = 4;
+      // dx = dx - 100;
+      // dy = dy + 100;
+      // fill(255, 0, 0);
+      // ellipse(dx, dy, 100, 100);
+    }
+
+    if (state === 5){
+      if (mouseX >= dx + 50 && mouseX <= dx + 150 && (mouseY >= 500 && mouseY <= 400)){
+        state = 6;
+      }
     }
   }
 }
@@ -189,22 +250,29 @@ function selectRed(){
   dy = 150;
   fill(0, 255, 0);
   ellipse(dx, dy, 100, 100);
-  if (state === 3){
-    if (mouseClicked() && (mouseX >= dx + 50 && mouseX <= dx + 150) && (mouseY >= dy + 50 && mouseY <= dy + 150)){
-      state = 5;
-      // dx = dx + 100;
-      // dy = dy + 100;
-      // fill(255, 0, 0);
-      // ellipse(dx, dy, 100, 100);
-    }
-    else if (mouseClicked() && (mouseX >= 500 && mouseX <= 600) && (mouseY >= 200 && mouseY <= 300)){
-      state = 4;
-      // dx = dx - 100;
-      // dy = dy + 100;
-      // fill(255, 0, 0);
-      // ellipse(dx, dy, 100, 100);
-    }
-  }
+//   if (state === 3){
+//     if (mouseClicked() && (mouseX >= dx + 50 && mouseX <= dx + 150) && (mouseY >= dy + 50 && mouseY <= dy + 150)){
+//       state = 5;
+//       // dx = dx + 100;
+//       // dy = dy + 100;
+//       // fill(255, 0, 0);
+//       // ellipse(dx, dy, 100, 100);
+//     }
+//     else if (mouseClicked() && (mouseX >= 500 && mouseX <= 600) && (mouseY >= 200 && mouseY <= 300)){
+//       state = 4;
+//       // dx = dx - 100;
+//       // dy = dy + 100;
+//       // fill(255, 0, 0);
+//       // ellipse(dx, dy, 100, 100);
+//     }
+//   }
+}
+
+function selectBlack(){
+  dx = 550;
+  dy = 650;
+  fill(0, 0, 255);
+  ellipse(dx, dy, 100, 100);
 }
 
 
@@ -239,7 +307,7 @@ function blackPeices(){
     x2 = width/4;                   //draws the black peices
     y = 50;
     y2 = 150;
-    for(let i = 0; i < 4; i ++){
+    for (let i = 0; i < 4; i ++){
       fill(100, 100, 100);
       noStroke();
       ellipse(x*i + y, 750, 100, 100);
