@@ -15,8 +15,19 @@ let isFilledWithBlack;
 let picture;
 let redPeiceArray = [];
 let blackPeiceArray = [];
-let redrow2x = 50;
+
+
+let redrow2x1 = 50;
+let redrow2x2 = 250;
+let redrow2x3 = 450;
+let redrow2x4 = 650;
 let redrow2y = 150;
+
+let redrow1x1 = 150;
+let redrow1x2 = 350;
+let redrow1x3 = 550;
+let redrow1x4 = 750;
+let redrow1y = 50;
 
 function preload() {
   picture = loadImage("assets/checkerboard.png");
@@ -76,31 +87,34 @@ function checkState(){
   }
 
   if (state === 5){
-    selectBlack();
+    fill(0);
+    rect(redrow2x4 - 150, redrow2y - 150, 100, 100);
+    state = 4;
+  }
+  if (state === 6){
+    fill(0);
+    rect(redrow2x4 + 50, redrow2y - 150, 100, 100);
+    state = 4;
+
   }
 
 
   if (state === 4){
-    if (mouseX >= dx + 50 && mouseX <= dx + 150 && (mouseY >= dy + 50 && mouseY <= dy + 150)) {
-      dx = 650;
-      dy = 150;
-      dx = dx + 100;
-      dy = dy + 100;
+    console.log("state 4");
+    if (mouseX >= redrow2x4 + 50 && mouseX <= redrow2x4 + 150 && mouseY >= redrow2y + 50 && mouseY <= redrow2y + 150){
+      redrow2x4 = redrow2x4 + 100;
+      redrow2y = redrow2y + 100;
       fill(255, 0, 0);
-      ellipse(dx, dy, 100, 100);
-      state = 3;
+      ellipse(redrow2x4, redrow2y, 100, 100);
+      state = 5;
     }
-    if (mouseX >= 500 && mouseX <= 600 && (mouseY >= 200 && mouseY <= 300)){
-      dx = 650;
-      dy = 150;
-      dx = dx - 100;
-      dy = dy + 100;
+    if (mouseX >= redrow2x4 - 150 && mouseX <= redrow2x4 - 50 && mouseY >= redrow2y + 50 && mouseY <= redrow2y + 150){
+      redrow2x4 = redrow2x4 - 100;
+      redrow2y = redrow2y + 100;
       fill(255, 0, 0);
-      ellipse(dx, dy, 100, 100);
-      state = 3;
+      ellipse(redrow2x4, redrow2y, 100, 100);
+      state = 6;
     }
-    fill(0);
-    rect(600, 100, 100, 100);
   }
 }
 
@@ -161,11 +175,19 @@ function mousePressed(){
 
 
   if (state === 2){
-    if (mouseX >= 600 && mouseX <= 700 && mouseY >= 100 && mouseY <= 300){
+    if (mouseX >= redrow2x4 - 50 && mouseX <= redrow2x4 + 50 && mouseY >= redrow2y -50 && mouseY <=redrow2y + 50){
       state = 3;
     }
     if (mouseX >= 500 && mouseX <= 600 && mouseY >= 600 && mouseY <= 700){
       state = 5;
+    }
+  }
+  if (state === 3){
+    if (mouseX >= redrow2x4 + 50 && mouseX <= redrow2x4 + 150 && mouseY >= redrow2y + 50 && mouseY <= redrow2y + 150){
+      state = 4;
+    }
+    if (mouseX >= redrow2x4 - 150 && mouseX <= redrow2x4 - 50 && mouseY >= redrow2y + 50 && mouseY <= redrow2y + 150){
+      state = 4;
     }
   }
 }
@@ -202,8 +224,8 @@ function gameBoard(){
 ////////////////////////////////////////////////////////
 
 function selectRed(){
-  fill(255, 50, 0);
-  ellipse(redrow2x, redrow2y, 100, 100);
+  fill(0, 255, 0);
+  ellipse(redrow2x4, redrow2y, 100, 100);
 }
 
 function selectBlack(){
@@ -225,27 +247,33 @@ function redPeices(){
     noStroke();
 
 
-    ellipse(redrow2x, redrow2y, 100, 100);
+    ellipse(redrow2x1, redrow2y, 100, 100);
 
 
-    ellipse(redrow2x + 200, redrow2y, 100, 100);
+    ellipse(redrow2x2, redrow2y, 100, 100);
 
 
-    ellipse(redrow2x + 400, redrow2y, 100, 100);
+    ellipse(redrow2x3, redrow2y, 100, 100);
 
 
-    ellipse(redrow2x + 600, redrow2y, 100, 100);
-
-
-
+    ellipse(redrow2x4, redrow2y, 100, 100);
 
 
 
 
-    ellipse(150, 50, 100, 100);
-    ellipse(350, 50, 100, 100);
-    ellipse(550, 50, 100, 100);
-    ellipse(750, 50, 100, 100);
+
+
+
+    ellipse(redrow1x1, redrow1y, 100, 100);
+
+
+    ellipse(redrow1x2, redrow1y, 100, 100);
+
+
+    ellipse(redrow1x3, redrow1y, 100, 100);
+
+
+    ellipse(redrow1x4, redrow1y, 100, 100);
   }
 }
 
