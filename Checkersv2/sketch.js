@@ -86,6 +86,9 @@ function checkState(){
     selectRed();
   }
 
+
+
+
   if (state === 5){
     fill(0);
     rect(redrow2x4 - 150, redrow2y - 150, 100, 100);
@@ -97,6 +100,8 @@ function checkState(){
     state = 4;
 
   }
+
+
 
 
   if (state === 4){
