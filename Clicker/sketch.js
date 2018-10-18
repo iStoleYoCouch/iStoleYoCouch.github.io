@@ -26,7 +26,15 @@ function draw() {
 
 function checkState(){
   if (state === 1){
+    fill(255);
     ellipse(width/2, height/2, 300, 300);
+
+    fill(255, 0, 0);
+    rect(0, 100, 100, 75);
+
+    fill(0);
+    textSize(35);
+    text("+5", 15, 150);
   }
   if (state === 2){
     fill(100, 50, 0);
@@ -46,8 +54,8 @@ function counter(){
   if (counterNumber <= 30){
     counterNumber = counterNumber + 1;
   }
-  if (counterNumber >= 30){
-    counterNumber = counterNumber + 5;
+  if (counterNumber >= 31){
+    if(mouseX >= 0 && mouseX <= 100 &&  mouseY >=)
   }
   text(counterNumber, 700/2, 150);
   state = 1;
@@ -61,5 +69,8 @@ function mousePressed(){
   circleY = 300;
   if (mouseX >= circleX - 150 && mouseX <= circleX + 150 && mouseY >= circleY - 150 && mouseY <= circleY + 150){
     state = 2;
+  }
+  if (plus5){
+
   }
 }
