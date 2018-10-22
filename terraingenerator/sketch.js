@@ -14,7 +14,7 @@ let rects = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  numberOfRects = 10;
+  numberOfRects = width;
   rectWidth = width/numberOfRects;
   generateRectangles();
 
@@ -26,13 +26,20 @@ function draw() {
   displayRects();
 }
 
+function keyPressed(){
+  generateRectangles();
+}
+
+
 function displayRects(){
   for (let i = 0; i < rects.length; i ++){
-    rects(rects[i].x, rects[i].y, rects[i].width, rects[i].height);
+    fill(random(1, 255));
+    rect(rects[i].x, rects[i].y, rects[i].width, rects[i].height);
   }
 }
 
 function generateRectangles(){
+  rects = [];
   for (let i = 0; i < numberOfRects; i++){
     let rectHeight = noise(time) * height;
     let someRect = {
