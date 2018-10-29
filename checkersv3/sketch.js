@@ -12,13 +12,26 @@ let isFilledWithBlack;
 let cellSize;
 let grid;
 
-let redPlayer = [];
-let blackPlayer = [];
+let board = [[0, 1, 0, 1, 0, 1, 0, 1],
+  [1, 0, 1, 0, 1, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [2, 0, 2, 0, 2, 0, 2, 0],
+  [0, 2, 0, 2, 0, 2, 0, 2],
+];
 
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 function preload() {
   picture = loadImage("assets/checkerboard.png");
 }
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 
 function setup() {
@@ -26,11 +39,18 @@ function setup() {
   state = 1;
   cellSize = width/8;
   isFilledWithBlack = false;
+  grid = redPeices();
 }
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
   checkState();
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
 function checkState(){
   if (state === 1){
     mainMenu();
@@ -42,7 +62,7 @@ function checkState(){
   }
 }
 
-
+////////////////////////////////////////////////////////////////////////////////
 
 function mainMenu(){
   x = 800;
@@ -82,7 +102,7 @@ function mainMenu(){
 }
 
 
-
+////////////////////////////////////////////////////////////////////////////////
 
 function displayGrid(){
   if (state === 2){
@@ -107,44 +127,55 @@ function displayGrid(){
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 function redPeices(){
   if (state === 2){
     for (let i = 0; i < 4; i ++){
       fill(255, 0, 0);
-      redPlayer.push(ellipse(width/4 * i + 150, 50, 100, 100));
+      board.push(ellipse(width/4 * i + 150, 50, 100, 100));
     }
     for (let j = 0; j < 4; j ++){
       fill(255, 0, 0);
-      redPlayer.push(ellipse(width/4*j + 50, 150, 100, 100));
+      board.push(ellipse(width/4*j + 50, 150, 100, 100));
     }
   }
 }
 
+
+////////////////////////////////////////////////////////////////////////////////
 
 function blackPeices(){
   if (state === 2){
     for (let i = 0; i < 4; i ++){
       fill(75, 75, 75);
-      blackPlayer.push(ellipse(width/4*i + 150, 650, 100, 100));
+      board.push(ellipse(width/4*i + 150, 650, 100, 100));
     }
     for (let j = 0; j < 4; j ++){
       fill(75, 75, 75);
-      blackPlayer.push(ellipse(width/4*j + 50, 750, 100, 100));
+      board.push(ellipse(width/4*j + 50, 750, 100, 100));
     }
   }
 }
 
-
+////////////////////////////////////////////////////////////////////////////////
 
 function mousePressed(){
+  let a = floor(mouseX / cellSize);
+  let b = floor(mouseY / cellSize);
   if (state === 1){
     if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){    // if you click the button, the state changes
       state = 2;
     }
   }
-  // if (state === 2){
-  //   // if (){
-  //
-  //   }
-  // }
+
+
+  if (state === 2){
+    if (grid[b][a] === 1){
+      grid[b][a] = 0;
+    }
+    else if (grid[y][x] === 0){
+      grid[b][a] = 0;
+    }
+  }
 }
