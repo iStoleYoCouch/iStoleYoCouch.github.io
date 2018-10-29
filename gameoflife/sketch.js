@@ -10,6 +10,7 @@ let y = 8;
 let grid;
 let cellSize;
 
+
 function setup() {
   createCanvas(700, 700);
   cellSize = width / x;
