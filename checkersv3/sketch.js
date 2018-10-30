@@ -10,9 +10,10 @@ let x, y;
 let state;
 let isFilledWithBlack;
 let cellSize;
-let grid;
 
-let board = [[0, 1, 0, 1, 0, 1, 0, 1],
+
+let board = [
+  [0, 1, 0, 1, 0, 1, 0, 1],
   [1, 0, 1, 0, 1, 0, 1, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -39,7 +40,7 @@ function setup() {
   state = 1;
   cellSize = width/8;
   isFilledWithBlack = false;
-  grid = redPeices();
+
 }
 
 
@@ -108,19 +109,14 @@ function displayGrid(){
   if (state === 2){
     for (let i = 0; i < 800; i++){
       for (let j = 0; j < 800; j++){    //draws the checker board
-
         if (isFilledWithBlack){
           fill(0);
         }
-
         else{
           fill(255);
-
         }
         rect(i*width/8, j*height/8, width/8, height/8);
         isFilledWithBlack = !isFilledWithBlack;
-
-
       }
       isFilledWithBlack = !isFilledWithBlack;
     }
@@ -161,21 +157,21 @@ function blackPeices(){
 ////////////////////////////////////////////////////////////////////////////////
 
 function mousePressed(){
-  let a = floor(mouseX / cellSize);
-  let b = floor(mouseY / cellSize);
   if (state === 1){
     if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){    // if you click the button, the state changes
       state = 2;
     }
   }
 
-
   if (state === 2){
-    if (grid[b][a] === 1){
-      grid[b][a] = 0;
+    let a = floor(mouseX / cellSize);
+    let b = floor(mouseY / cellSize);
+    if (board[b][a] === 1){
+      fill(0, 255, 0);
+      board.pop([1][6]);
     }
-    else if (grid[y][x] === 0){
-      grid[b][a] = 0;
+    else if (board[b][a] === 0){
+      board[b][a] = 0;
     }
   }
 }
