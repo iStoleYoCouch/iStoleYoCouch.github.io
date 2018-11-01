@@ -11,6 +11,8 @@ let state;
 let isFilledWithBlack;
 let cellSize;
 
+let a, b;
+
 
 let board = [
   [0, 1, 0, 1, 0, 1, 0, 1],
@@ -60,6 +62,9 @@ function checkState(){
     displayGrid();
     redPeices();
     blackPeices();
+  }
+  if (state === 3){
+    sans();
   }
 }
 
@@ -126,15 +131,19 @@ function displayGrid(){
 ////////////////////////////////////////////////////////////////////////////////
 
 function redPeices(){
-  if (state === 2){
-    for (let i = 0; i < 4; i ++){
-      fill(255, 0, 0);
-      board.push(ellipse(width/4 * i + 150, 50, 100, 100));
-    }
-    for (let j = 0; j < 4; j ++){
-      fill(255, 0, 0);
-      board.push(ellipse(width/4*j + 50, 150, 100, 100));
-    }
+
+  for (let i = 0; i < 4; i ++){
+    fill(255, 0, 0);
+    board[0][1] = ellipse(width/4 * i + 150, 50, 100, 100);
+    board[0][3] = ellipse(width/4 * i + 150, 50, 100, 100);
+    board[0][5] = ellipse(width/4 * i + 150, 50, 100, 100);
+    board[0][7] = ellipse(width/4 * i + 150, 50, 100, 100);
+
+
+    board[1][0] = ellipse(width/4 * i + 50, 150, 100, 100);
+    board[1][2] = ellipse(width/4 * i + 50, 150, 100, 100);
+    board[1][4] = ellipse(width/4 * i + 50, 150, 100, 100);
+    board[1][6] = ellipse(width/4 * i + 50, 150, 100, 100);
   }
 }
 
@@ -145,11 +154,11 @@ function blackPeices(){
   if (state === 2){
     for (let i = 0; i < 4; i ++){
       fill(75, 75, 75);
-      board.push(ellipse(width/4*i + 150, 650, 100, 100));
+      //board.push(ellipse(width/4*i + 150, 650, 100, 100));
     }
     for (let j = 0; j < 4; j ++){
       fill(75, 75, 75);
-      board.push(ellipse(width/4*j + 50, 750, 100, 100));
+      //board.push(ellipse(width/4*j + 50, 750, 100, 100));
     }
   }
 }
@@ -164,14 +173,20 @@ function mousePressed(){
   }
 
   if (state === 2){
-    let a = floor(mouseX / cellSize);
-    let b = floor(mouseY / cellSize);
-    if (board[b][a] === 1){
-      fill(0, 255, 0);
-      board.pop([1][6]);
+    a = floor(mouseX / cellSize);
+    b = floor(mouseY / cellSize);
+    if (board[b][a] ){//=== "e"){
+      state = 3;
     }
     else if (board[b][a] === 0){
       board[b][a] = 0;
     }
+  }
+}
+
+function sans(){
+  if (state === 3){
+    fill(0, 255, 0);
+    ellipse(width/2, height/2, 100, 100);
   }
 }
