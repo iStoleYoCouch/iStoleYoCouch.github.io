@@ -21,8 +21,8 @@ let board = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
-  [2, 0, 2, 0, 2, 0, 2, 0],
   [0, 2, 0, 2, 0, 2, 0, 2],
+  [2, 0, 2, 0, 2, 0, 2, 0],
 ];
 
 
@@ -60,11 +60,29 @@ function checkState(){
   }
   if (state === 2){
     displayGrid();
-    redPeices();
-    blackPeices();
+    // redPeices();
+    // blackPeices();
+    showPeices();
   }
-  if (state === 3){
-    sans();
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+function showPeices() {
+  for (let x = 0; x < 8; x++) {
+    for (let y = 0; y < 8; y++) {
+      if (board[y][x] === 1) {
+        fill(255, 0, 0);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize, cellSize);
+      }
+      if (board[y][x] === 3) {
+        fill(0, 255, 0);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize, cellSize);
+        state = 3;
+
+      }
+    }
   }
 }
 
@@ -130,38 +148,38 @@ function displayGrid(){
 
 ////////////////////////////////////////////////////////////////////////////////
 
-function redPeices(){
-
-  for (let i = 0; i < 4; i ++){
-    fill(255, 0, 0);
-    board[0][1] = ellipse(width/4 * i + 150, 50, 100, 100);
-    board[0][3] = ellipse(width/4 * i + 150, 50, 100, 100);
-    board[0][5] = ellipse(width/4 * i + 150, 50, 100, 100);
-    board[0][7] = ellipse(width/4 * i + 150, 50, 100, 100);
-
-
-    board[1][0] = ellipse(width/4 * i + 50, 150, 100, 100);
-    board[1][2] = ellipse(width/4 * i + 50, 150, 100, 100);
-    board[1][4] = ellipse(width/4 * i + 50, 150, 100, 100);
-    board[1][6] = ellipse(width/4 * i + 50, 150, 100, 100);
-  }
-}
+// function redPeices(){
+//
+//   for (let i = 0; i < 4; i ++){
+//     fill(255, 0, 0);
+//     board[0][1] = ellipse(width/4 * i + 150, 50, 100, 100);
+//     board[0][3] = ellipse(width/4 * i + 150, 50, 100, 100);
+//     board[0][5] = ellipse(width/4 * i + 150, 50, 100, 100);
+//     board[0][7] = ellipse(width/4 * i + 150, 50, 100, 100);
+//
+//
+//     board[1][0] = ellipse(width/4 * i + 50, 150, 100, 100);
+//     board[1][2] = ellipse(width/4 * i + 50, 150, 100, 100);
+//     board[1][4] = ellipse(width/4 * i + 50, 150, 100, 100);
+//     board[1][6] = ellipse(width/4 * i + 50, 150, 100, 100);
+//   }
+// }
 
 
 ////////////////////////////////////////////////////////////////////////////////
 
-function blackPeices(){
-  if (state === 2){
-    for (let i = 0; i < 4; i ++){
-      fill(75, 75, 75);
-      //board.push(ellipse(width/4*i + 150, 650, 100, 100));
-    }
-    for (let j = 0; j < 4; j ++){
-      fill(75, 75, 75);
-      //board.push(ellipse(width/4*j + 50, 750, 100, 100));
-    }
-  }
-}
+// function blackPeices(){
+//   if (state === 2){
+//     for (let i = 0; i < 4; i ++){
+//       fill(75, 75, 75);
+//       //board.push(ellipse(width/4*i + 150, 650, 100, 100));
+//     }
+//     for (let j = 0; j < 4; j ++){
+//       fill(75, 75, 75);
+//       //board.push(ellipse(width/4*j + 50, 750, 100, 100));
+//     }
+//   }
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -175,18 +193,17 @@ function mousePressed(){
   if (state === 2){
     a = floor(mouseX / cellSize);
     b = floor(mouseY / cellSize);
-    if (board[b][a] ){//=== "e"){
-      state = 3;
+    if (board[b][a] === 1 ){//=== "e"){
+      board[b][a] = 3;
+
     }
     else if (board[b][a] === 0){
       board[b][a] = 0;
     }
   }
-}
-
-function sans(){
   if (state === 3){
-    fill(0, 255, 0);
-    ellipse(width/2, height/2, 100, 100);
+    if (board[b][a] === 0){
+      board[b][a] = 1;
+    }
   }
 }
