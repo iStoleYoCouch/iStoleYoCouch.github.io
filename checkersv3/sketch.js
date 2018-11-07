@@ -10,17 +10,18 @@ let x, y;
 let state;
 let isFilledWithBlack;
 let cellSize;
-let previousPos;
+let previousPosx;
+let previousPosy;
 let a, b;
 
 
 let board = [
   [0, 1, 0, 1, 0, 1, 0, 1],
   [1, 0, 1, 0, 1, 0, 1, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 9, 0, 9, 0, 9, 0, 9],
+  [9, 0, 9, 0, 9, 0, 9, 0],
+  [0, 9, 0, 9, 0, 9, 0, 9],
+  [9, 0, 9, 0, 9, 0, 9, 0],
   [0, 2, 0, 2, 0, 2, 0, 2],
   [2, 0, 2, 0, 2, 0, 2, 0],
 ];
@@ -72,15 +73,20 @@ function showPeices() {
   for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
       if (board[y][x] === 1) {
+        fill(0);
+        rect(x*cellSize, y*cellSize, cellSize, cellSize);
         fill(255, 0, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize, cellSize);
-        previousPos = board[0][0];
       }
       if (board[y][x] === 3) {
         fill(0, 255, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize, cellSize);
         state = 3;
       }
+      // if (board[y][x] === 9){
+      //   fill(0);
+      //   rect(x*cellSize, y*cellSize, cellSize, cellSize);
+      // }
     }
   }
 }
@@ -162,11 +168,9 @@ function mousePressed(){
     b = floor(mouseY / cellSize);
     if (board[b][a] === 1 ){//=== "e"){
       board[b][a] = 3;
-      previousPos = board[b][a];
+      previousPosx = board[a];
+      previousPosy = board[b];
 
-    }
-    else if (board[b][a] === 0){
-      board[b][a] = 0;
     }
   }
 
@@ -174,10 +178,9 @@ function mousePressed(){
     a = floor(mouseX / cellSize);
     b = floor(mouseY / cellSize);
     console.log("state is 3");
-    if (board[b][a] === 0){
+    if (board[b][a] === 9){
       console.log("was a 0");
       board[b][a] = 1;
-      previousPos = 0;
     }
   }
 }
