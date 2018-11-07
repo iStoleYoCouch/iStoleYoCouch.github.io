@@ -10,7 +10,7 @@ let x, y;
 let state;
 let isFilledWithBlack;
 let cellSize;
-
+let previousPos;
 let a, b;
 
 
@@ -58,13 +58,12 @@ function checkState(){
   if (state === 1){
     mainMenu();
   }
-  if (state === 2){
+  if (state === 2 || state === 3){
     displayGrid();
     // redPeices();
     // blackPeices();
     showPeices();
   }
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -75,12 +74,12 @@ function showPeices() {
       if (board[y][x] === 1) {
         fill(255, 0, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize, cellSize);
+        previousPos = board[0][0];
       }
       if (board[y][x] === 3) {
         fill(0, 255, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize, cellSize);
         state = 3;
-
       }
     }
   }
@@ -146,64 +145,39 @@ function displayGrid(){
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-
-// function redPeices(){
-//
-//   for (let i = 0; i < 4; i ++){
-//     fill(255, 0, 0);
-//     board[0][1] = ellipse(width/4 * i + 150, 50, 100, 100);
-//     board[0][3] = ellipse(width/4 * i + 150, 50, 100, 100);
-//     board[0][5] = ellipse(width/4 * i + 150, 50, 100, 100);
-//     board[0][7] = ellipse(width/4 * i + 150, 50, 100, 100);
-//
-//
-//     board[1][0] = ellipse(width/4 * i + 50, 150, 100, 100);
-//     board[1][2] = ellipse(width/4 * i + 50, 150, 100, 100);
-//     board[1][4] = ellipse(width/4 * i + 50, 150, 100, 100);
-//     board[1][6] = ellipse(width/4 * i + 50, 150, 100, 100);
-//   }
-// }
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-// function blackPeices(){
-//   if (state === 2){
-//     for (let i = 0; i < 4; i ++){
-//       fill(75, 75, 75);
-//       //board.push(ellipse(width/4*i + 150, 650, 100, 100));
-//     }
-//     for (let j = 0; j < 4; j ++){
-//       fill(75, 75, 75);
-//       //board.push(ellipse(width/4*j + 50, 750, 100, 100));
-//     }
-//   }
-// }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 function mousePressed(){
   if (state === 1){
+    console.log("state is 1");
     if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){    // if you click the button, the state changes
       state = 2;
     }
   }
 
   if (state === 2){
+    console.log("state is 2");
     a = floor(mouseX / cellSize);
     b = floor(mouseY / cellSize);
     if (board[b][a] === 1 ){//=== "e"){
       board[b][a] = 3;
+      previousPos = board[b][a];
 
     }
     else if (board[b][a] === 0){
       board[b][a] = 0;
     }
   }
-  if (state === 3){
+
+  else if (state === 3){
+    a = floor(mouseX / cellSize);
+    b = floor(mouseY / cellSize);
+    console.log("state is 3");
     if (board[b][a] === 0){
+      console.log("was a 0");
       board[b][a] = 1;
+      previousPos = 0;
     }
   }
 }
