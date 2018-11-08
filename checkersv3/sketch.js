@@ -65,6 +65,37 @@ function checkState(){
     // blackPeices();
     showPeices();
   }
+  if (state === 4){
+    displayGrid();
+    showPeices();
+    console.log("state 4");
+    for (let i = 0; i < 8; i ++){
+      for (let j = 0; j < 8; j ++){
+        if (board[i][j] === 3){
+          board[i][j] = 9;
+          state = 5;
+        }
+      }
+    }
+  }
+  if (state === 5){
+    displayGrid();
+    showPeices();
+    console.log("state 5");
+  }
+  if (state === 7){
+    displayGrid();
+    showPeices();
+    console.log("state 7");
+    for (let i = 0; i < 8; i ++){
+      for (let j = 0; j < 8; j ++){
+        if (board[i][j] === 4){
+          board[i][j] = 9;
+          state = 2;
+        }
+      }
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -72,6 +103,9 @@ function checkState(){
 function showPeices() {
   for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
+
+      //red peices
+
       if (board[y][x] === 1) {
         fill(0);
         rect(x*cellSize, y*cellSize, cellSize, cellSize);
@@ -80,13 +114,28 @@ function showPeices() {
       }
       if (board[y][x] === 3) {
         fill(0, 255, 0);
-        ellipse(x*cellSize+50, y*cellSize+50, cellSize, cellSize);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
         state = 3;
       }
-      // if (board[y][x] === 9){
-      //   fill(0);
-      //   rect(x*cellSize, y*cellSize, cellSize, cellSize);
-      // }
+
+      //black spaces
+
+      if (board[y][x] === 9){
+        fill(0);
+        rect(x*cellSize, y*cellSize, cellSize, cellSize);
+      }
+
+      //black peices
+
+      if (board[y][x] === 2){
+        fill(75);
+        ellipse(x*cellSize + 50, y*cellSize + 50, cellSize, cellSize);
+      }
+      if (board[x][y] === 4){
+        fill(0, 0, 255);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
+        state = 6;
+      }
     }
   }
 }
@@ -181,6 +230,24 @@ function mousePressed(){
     if (board[b][a] === 9){
       console.log("was a 0");
       board[b][a] = 1;
+      state = 4;
+    }
+  }
+  else if (state === 5){
+    a = floor(mouseX / cellSize);
+    b = floor(mouseY / cellSize);
+    if (board[b][a] === 2 ){//=== "e"){
+      board[b][a] = 4;
+    }
+  }
+  else if (state === 6){
+    a = floor(mouseX / cellSize);
+    b = floor(mouseY / cellSize);
+    console.log("state is 6");
+    if (board[b][a] === 9){
+      console.log("was a 0");
+      board[b][a] = 2;
+      state = 7;
     }
   }
 }
