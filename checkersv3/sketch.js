@@ -65,6 +65,9 @@ function checkState(){
     // blackPeices();
     showPeices();
   }
+
+
+
   if (state === 4){
     displayGrid();
     showPeices();
@@ -78,11 +81,17 @@ function checkState(){
       }
     }
   }
+
+
+
   if (state === 5){
     displayGrid();
     showPeices();
     console.log("state 5");
   }
+
+
+
   if (state === 7){
     displayGrid();
     showPeices();
@@ -131,9 +140,13 @@ function showPeices() {
         fill(75);
         ellipse(x*cellSize + 50, y*cellSize + 50, cellSize, cellSize);
       }
+
+
       if (board[x][y] === 4){
         fill(0, 0, 255);
-        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
+        console.log(x*cellSize+50);
+        console.log(y*cellSize+50)
+        ellipse(y*cellSize+50, x*cellSize+50, cellSize - 1, cellSize - 1);
         state = 6;
       }
     }
