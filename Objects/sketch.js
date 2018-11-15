@@ -39,9 +39,14 @@ function setup() {
 
 function draw() {
   background(0);
-  for (let i = 0; i < fireworks.length; i ++){
-    fireworks[i].display();
-    fireworks[i].update();
+  for (let i = fireworks.length - 1; i >= 0; i--){
+    if (fireworks[i].transparency <= 0){
+      fireworks.splice(i, 1);
+    }
+    else{
+      fireworks[i].display();
+      fireworks[i].update();
+    }
   }
 
 }
