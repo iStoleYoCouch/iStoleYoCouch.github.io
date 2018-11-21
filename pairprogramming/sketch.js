@@ -40,6 +40,9 @@ function checkState(){
   if (state === 3){
     controlScreen();
   }
+  if (state === 2){
+    fortnite();
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -105,6 +108,9 @@ function controlScreen(){
   textSize(50);
   text("Controls", width/2 - 200, 100);
 
+  fill("purple");
+  ellipse(mouseX, mouseY, 20, 20);
+
   // controls
 
 
@@ -127,11 +133,29 @@ function controlScreen(){
 
 function mousePressed(){
   if (mouseX >= width/2 - 150 && mouseX <= width/2 - 150 + 200){
-    state === 2;
+    if (mouseY >= 250 && mouseY <= 315){
+      state = 2;
+    }
   }
   if (mouseX >= width/2 - 150 && mouseX <= width/2 - 150 + 200){
     if (mouseY >= 350 && mouseY <= 415){
       state = 3;
     }
   }
+  if (state === 3){
+    if (mouseX >= 0 && mouseX <= 200){
+      if (mouseY >= 0 && mouseY <= 65){
+        state = 1;
+      }
+    }
+  }
+}
+
+
+
+function fortnite(){
+  background("blue");
+  fill("yellow");
+  textSize(100);
+  text("FORNTITE", width/2, height/2);
 }
