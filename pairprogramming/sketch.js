@@ -7,6 +7,10 @@
 let tank1;
 let tank2;
 let tank3;
+let state;
+
+////////////////////////////////////////////////////////////////////////////////
+
 function preload(){
   tank1 = loadImage("assets/tank1.png");
   tank2 = loadImage("assets/tank2.png");
@@ -14,16 +18,20 @@ function preload(){
 
 }
 
-let state;
+////////////////////////////////////////////////////////////////////////////////
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   state = 1;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 function draw() {
   checkState();
 }
 
+////////////////////////////////////////////////////////////////////////////////
 
 function checkState(){
   if (state === 1){
@@ -33,6 +41,8 @@ function checkState(){
     controlScreen();
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 function mainMenu(){
   background(70, 50, 20);
@@ -60,7 +70,7 @@ function mainMenu(){
 
   if (mouseX >= width/2 - 150 && mouseX <= width/2 - 150 + 200){
     if (mouseY >= 250 && mouseY <= 315){
-      fill(0, 255, 0);
+      fill(255, 200, 0);
       rect(width/2 - 150, 250, 200, 65);
     }
   }
@@ -76,7 +86,7 @@ function mainMenu(){
 
   if (mouseX >= width/2 - 150 && mouseX <= width/2 - 150 + 200){
     if (mouseY >= 350 && mouseY <= 415){
-      fill(0, 255, 0);
+      fill(255, 200, 0);
       rect(width/2 - 150, 350, 200, 65);
     }
   }
@@ -87,11 +97,33 @@ function mainMenu(){
 
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 function controlScreen(){
-  background("yellow");
+  fill(0);
+  background(70, 50, 20);
   textSize(50);
-  text("Now This Is Epic", 100, 300);
+  text("Controls", width/2 - 200, 100);
+
+  // controls
+
+
+  fill(100);
+  rect(0, 0, 200, 65);
+
+  if (mouseX >= 0 && mouseX <= 200){
+    if (mouseY >= 0 && mouseY <= 65){
+      fill(255, 200, 0);
+      rect(0, 0, 200, 65);
+    }
+  }
+  fill(0);
+  textSize(50);
+  text("Back", 30, 50);
+
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 function mousePressed(){
   if (mouseX >= width/2 - 150 && mouseX <= width/2 - 150 + 200){
