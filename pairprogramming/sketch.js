@@ -23,6 +23,10 @@ function preload(){
 function setup() {
   createCanvas(windowWidth, windowHeight);
   state = 1;
+  if (state === 3){
+    background(70, 50, 20);
+
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -104,14 +108,17 @@ function mainMenu(){
 
 function controlScreen(){
   fill(0);
-  background(70, 50, 20);
+  // background(70, 50, 20);
   textSize(50);
   text("Controls", width/2 - 200, 100);
 
   fill("purple");
   ellipse(mouseX, mouseY, 20, 20);
 
-  // controls
+  fill(255);
+  rect(200, 300, 75, 75);
+
+
 
 
   fill(100);
@@ -126,6 +133,7 @@ function controlScreen(){
   fill(0);
   textSize(50);
   text("Back", 30, 50);
+
 
 }
 
