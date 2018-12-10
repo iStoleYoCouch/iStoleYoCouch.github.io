@@ -212,10 +212,32 @@ function displayGrid(){
       isFilledWithBlack = !isFilledWithBlack;
     }
   }
-  fill(120);
-  rect(800, 0, 400, 800);
+  sideBar();
 }
 
+
+////////////////////////////////////////////////////////////////////////////////
+
+function sideBar(){
+  fill(120);
+  rect(800, 0, 400, 800);
+
+  fill(0);
+  textSize(15);
+  text("Player One", 865, 50);
+  text("Player Two", 960, 50);
+
+  fill(255);
+  ellipse(900, 100, 75, 75);
+  ellipse(1000, 100, 75, 75);
+
+
+
+  if (state === 2){
+    fill("green");
+    ellipse(900, 100, 75, 75);
+  }
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -233,8 +255,7 @@ function mousePressed(){
     b = floor(mouseY / cellSize);
     if (board[b][a] === 1 ){//=== "e"){
       board[b][a] = 3;
-      previousPosx = board[a];
-      previousPosy = board[b];
+
 
     }
   }
