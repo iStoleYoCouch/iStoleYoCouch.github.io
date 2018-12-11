@@ -14,6 +14,7 @@ let previousPosx;
 let previousPosy;
 let a, b;
 let boardWidth = 800;
+let e, q;
 
 
 let board = [
@@ -125,8 +126,17 @@ function showPeices() {
       if (board[y][x] === 3) {
         fill(0, 255, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
+        if (board[y+1][x+1] === 9 || board[y+1][x-1] === 9){
+          board[y+1][x+1] = "m";
+          board[y+1][x-1] = "m";
+        }
         state = 3;
       }
+
+
+
+
+
 
       //black spaces
 
@@ -134,6 +144,11 @@ function showPeices() {
         fill(0);
         rect(x*cellSize, y*cellSize, cellSize, cellSize);
       }
+
+
+
+
+
 
       //black peices
 
@@ -199,7 +214,7 @@ function mainMenu(){
 function displayGrid(){
   if (state === 2){
     for (let i = 0; i < 8; i++){
-      for (let j = 0; j < 800; j++){    //draws the checker board
+      for (let j = 0; j < 8; j++){    //draws the checker board
         if (isFilledWithBlack){
           fill(0);
         }
@@ -227,21 +242,31 @@ function sideBar(){
   text("Player One", 865, 50);
   text("Player Two", 960, 50);
 
+
+  //Player turn
+
   fill(255);
   ellipse(900, 100, 75, 75);
   ellipse(1000, 100, 75, 75);
 
 
-
-  if (state === 2){
+  if (state === 2 || state === 3){
     fill("green");
     ellipse(900, 100, 75, 75);
+  }
+  if (state === 4 || state === 5){
+    fill("green");
+    ellipse(1000, 100, 75, 75);
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 function mousePressed(){
+  a = floor(mouseX / cellSize);
+  b = floor(mouseY / cellSize);
+
+
   if (state === 1){
     console.log("state is 1");
     if (mouseX >= 300 && mouseX <= 500 && mouseY >= 350 && mouseY <= 450){    // if you click the button, the state changes
@@ -251,22 +276,23 @@ function mousePressed(){
 
   if (state === 2){
     console.log("state is 2");
-    a = floor(mouseX / cellSize);
-    b = floor(mouseY / cellSize);
     if (board[b][a] === 1 ){//=== "e"){
       board[b][a] = 3;
+
+
 
 
     }
   }
 
   else if (state === 3){
-    a = floor(mouseX / cellSize);
-    b = floor(mouseY / cellSize);
+    // e = floor(mouseX / cellSize);
+    // q = floor(mouseY / cellSize);
     console.log("state is 3");
-    if (board[b][a] === 9){
+    if (board[b][a] === "m"){
       console.log("was a 0");
       board[b][a] = 1;
+      
       state = 4;
     }
   }
