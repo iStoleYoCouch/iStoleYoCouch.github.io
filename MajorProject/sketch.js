@@ -107,6 +107,16 @@ function checkState(){
       }
     }
   }
+  if (state === 22){
+    for (let x = 0; x < 8; x++) {
+      for (let y = 0; y < 8; y++) {
+        if (board[y][x] === "m"){
+          board[y][x] = 9;
+        }
+        state = 4;
+      }
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -123,7 +133,9 @@ function showPeices() {
         fill(255, 0, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize, cellSize);
       }
-      if (board[y][x] === 3) {
+
+
+      if (board[y][x] === 3 && state === 2) {
         fill(0, 255, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
         if (board[y+1][x+1] === 9 || board[y+1][x-1] === 9){
@@ -144,6 +156,12 @@ function showPeices() {
         fill(0);
         rect(x*cellSize, y*cellSize, cellSize, cellSize);
       }
+      if (state !== 6){
+        if (board[y][x] === "t"){
+          board[y][x] = 9;
+        }
+      }
+
 
 
 
@@ -158,11 +176,13 @@ function showPeices() {
       }
 
 
-      if (board[x][y] === 4){
+      if (board[y][x] === 4 && state === 5){
         fill(0, 0, 255);
-        console.log(x*cellSize+50);
-        console.log(y*cellSize+50)
-        ellipse(y*cellSize+50, x*cellSize+50, cellSize - 1, cellSize - 1);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
+        if (board[y-1][x+1] === 9 || board[y-1][x-1] === 9){
+          board[y-1][x+1] = "t";
+          board[y-1][x-1] = "t";
+        }
         state = 6;
       }
     }
@@ -286,16 +306,19 @@ function mousePressed(){
   }
 
   else if (state === 3){
-    // e = floor(mouseX / cellSize);
-    // q = floor(mouseY / cellSize);
     console.log("state is 3");
     if (board[b][a] === "m"){
       console.log("was a 0");
       board[b][a] = 1;
-      
-      state = 4;
+
+
+
+      state = 22;
     }
   }
+
+
+
   else if (state === 5){
     a = floor(mouseX / cellSize);
     b = floor(mouseY / cellSize);
@@ -307,7 +330,7 @@ function mousePressed(){
     a = floor(mouseX / cellSize);
     b = floor(mouseY / cellSize);
     console.log("state is 6");
-    if (board[b][a] === 9){
+    if (board[b][a] === "t"){
       console.log("was a 0");
       board[b][a] = 2;
       state = 7;
