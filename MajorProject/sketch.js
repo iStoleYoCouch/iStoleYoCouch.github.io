@@ -121,6 +121,10 @@ function checkState(){
 
 ////////////////////////////////////////////////////////////////////////////////
 
+
+
+////////////////////////////////////////////////////////////////////////////////
+
 function showPeices() {
   for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
@@ -138,9 +142,21 @@ function showPeices() {
       if (board[y][x] === 3 && state === 2) {
         fill(0, 255, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
-        if (board[y+1][x+1] === 9 || board[y+1][x-1] === 9){
+        if (board[y+1][x+1] === 2){
+          board[y+2][x+2] = "m";
+        }
+        if (board[y+1][x-1] === 2){
+          board[y+2][x-2] = "m";
+        }
+
+
+
+        if (board[y+1][x+1] === 9){
           board[y+1][x+1] = "m";
+        }
+        if (board[y+1][x-1] === 9){
           board[y+1][x-1] = "m";
+
         }
         state = 3;
       }
@@ -179,8 +195,18 @@ function showPeices() {
       if (board[y][x] === 4 && state === 5){
         fill(0, 0, 255);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
-        if (board[y-1][x+1] === 9 || board[y-1][x-1] === 9){
+        if (board[y-1][x-1] === 1){
+          board[y-2][x-2] = "t";
+        }
+        if (board[y-1][x+1] === 1){
+          board[y-2][x+2] = "t";
+        }
+
+
+        if (board[y-1][x+1] === 9){
           board[y-1][x+1] = "t";
+        }
+        if ( board[y-1][x-1] === 9){
           board[y-1][x-1] = "t";
         }
         state = 6;
