@@ -143,10 +143,14 @@ function showPeices() {
         fill(0, 255, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
         if (board[y+1][x+1] === 2){
-          board[y+2][x+2] = "m";
+          if (board[y+2][x+2] === 9){
+            board[y+2][x+2] = "m";
+          }
         }
         if (board[y+1][x-1] === 2){
-          board[y+2][x-2] = "m";
+          if (board[y+2][x-2] === 9){
+            board[y+2][x-2] = "m";
+          }
         }
 
 
@@ -196,10 +200,14 @@ function showPeices() {
         fill(0, 0, 255);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
         if (board[y-1][x-1] === 1){
-          board[y-2][x-2] = "t";
+          if (board[y-2][x-2] === 9){
+            board[y-2][x-2] = "t";
+          }
         }
         if (board[y-1][x+1] === 1){
-          board[y-2][x+2] = "t";
+          if (board[y-2][x+2] === 9){
+            board[y-2][x+2] = "t";
+          }
         }
 
 
