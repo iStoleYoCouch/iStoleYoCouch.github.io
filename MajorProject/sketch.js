@@ -53,6 +53,7 @@ function setup() {
 
 function draw() {
   checkState();
+  isThereATwoOnTheBoard();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -117,12 +118,52 @@ function checkState(){
       }
     }
   }
+  if(state !== 1){
+    if (isThereATwoOnTheBoard() === false){
+      fill("red");
+      rect(0, 0, width, height);
+
+      fill(0);
+      textSize(100);
+      text("Red Wins!", 100, 200);
+    }
+    if (isThereAOneOnTheBoard() === false){
+      fill("gray");
+      rect(0, 0, width, height);
+
+
+      fill(0);
+      textSize(100);
+      text("Black Wins!", 100, 200);
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
+function isThereATwoOnTheBoard(){
+  for (let x = 0; x < 8; x++) {
+    for (let y = 0; y < 8; y++) {
+      if (board[y][x] === 2 || board[y][x] === 4){
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
 
+
+function isThereAOneOnTheBoard(){
+  for (let x = 0; x < 8; x++) {
+    for (let y = 0; y < 8; y++) {
+      if (board[y][x] === 1 || board[y][x] === 3){
+        return true;
+      }
+    }
+  }
+  return false;
+}
 ////////////////////////////////////////////////////////////////////////////////
 
 function showPeices() {
@@ -195,7 +236,6 @@ function showPeices() {
           board[y][x] = 9;
         }
       }
-
 
 
 
@@ -355,6 +395,13 @@ function mousePressed(){
 
   else if (state === 3){
     console.log("state is 3");
+
+    if (board[b][a] === 3){
+      board[b][a] = 1;
+      state = 2;
+    }
+
+
     if (board[b][a] === "m"){
       console.log("was a 0");   //move red piece
       board[b][a] = 1;
@@ -391,6 +438,11 @@ function mousePressed(){
     b = floor(mouseY / cellSize);
     console.log("state is 6");      //move black piece
 
+    if (board[b][a] === 4){
+      board[b][a] = 2;
+      state = 5;
+    }
+
     if (board[b][a] === 0){
       state = 6;
     }
@@ -405,11 +457,11 @@ function mousePressed(){
 
 
     if (board[b][a] === "l"){
-      board[b][a] = 1;
-      if (board[b+1][a+1] === 2){
+      board[b][a] = 2;
+      if (board[b+1][a+1] === 1){
         board[b+1][a+1] = 9;
       }
-      if (board[b+1][a-1] === 2){
+      if (board[b+1][a-1] === 1){
         board[b+1][a-1] = 9;
       }
       state = 7;
