@@ -256,14 +256,15 @@ function showPeices() {
       if (board[y][x] === 4 && state === 5){
         fill(0, 0, 255);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
+
         if (board[y-1][x-1] === 1){
           if (board[y-2][x-2] === 9){
-            board[y-2][x-2] = "l";          //l is for black to jump red
+            board[y-2][x-2] = "l1";          //l is for black to jump red
           }
         }
         if (board[y-1][x+1] === 1){
           if (board[y-2][x+2] === 9){
-            board[y-2][x+2] = "l";
+            board[y-2][x+2] = "l2";
           }
         }
 
@@ -465,11 +466,15 @@ function mousePressed(){
     }
 
 
-    if (board[b][a] === "l"){
+    if (board[b][a] === "l1"){
       board[b][a] = 2;
       if (board[b+1][a+1] === 1){
         board[b+1][a+1] = 9;
       }
+      state = 7;
+    }
+    if (board[b][a] === "l2"){
+      board[b][a] = 2;
       if (board[b+1][a-1] === 1){
         board[b+1][a-1] = 9;
       }
