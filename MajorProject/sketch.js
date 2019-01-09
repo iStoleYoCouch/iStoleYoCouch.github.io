@@ -185,7 +185,9 @@ function showPeices() {
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
 
 
-
+        if (board[y+2][x+2] > 800 && board[y+2][x-2] > 800){
+          state = 3;
+        }
 
 
         if (board[y+1][x+1] === 2){
