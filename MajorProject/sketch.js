@@ -179,25 +179,32 @@ function showPeices() {
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
       }
 
+      if (board[y][x] === "rk"){
+        fill("yellow");
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
+      }
+
+
+
+
 
       if (board[y][x] === 3 && state === 2) {
         fill(0, 255, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
 
 
-        if (board[y+2][x+2] > 800 && board[y+2][x-2] > 800){
-          state = 3;
-        }
 
+        if (y + 2 < 8) {  // only check this if there is space on the board...
 
-        if (board[y+1][x+1] === 2){
-          if (board[y+2][x+2] === 9){
-            board[y+2][x+2] = "k1";          // k is for red piece to jump black piece
+          if (board[y+1][x+1] === 2){
+            if (board[y+2][x+2] === 9){
+              board[y+2][x+2] = "k1";          // k is for red piece to jump black piece
+            }
           }
-        }
-        if (board[y+1][x-1] === 2){
-          if (board[y+2][x-2] === 9){
-            board[y+2][x-2] = "k2";
+          if (board[y+1][x-1] === 2){
+            if (board[y+2][x-2] === 9){
+              board[y+2][x-2] = "k2";
+            }
           }
         }
 
@@ -206,7 +213,10 @@ function showPeices() {
         }
 
         if (board[y+1][x+1] === 9){
-          board[y+1][x+1] = "m";          //m is for red moving
+          board[y+1][x+1] = "m";
+          if (y === 7){
+            board[y][x] = "rk";
+          }        //m is for red moving
         }
         if (board[y+1][x-1] === 9){
           board[y+1][x-1] = "m";
@@ -259,14 +269,18 @@ function showPeices() {
         fill(0, 0, 255);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
 
-        if (board[y-1][x-1] === 1){
-          if (board[y-2][x-2] === 9){
-            board[y-2][x-2] = "l1";          //l is for black to jump red
+
+
+        if (y - 2 >= 0) {
+          if (board[y-1][x-1] === 1){
+            if (board[y-2][x-2] === 9){
+              board[y-2][x-2] = "l1";          //l is for black to jump red
+            }
           }
-        }
-        if (board[y-1][x+1] === 1){
-          if (board[y-2][x+2] === 9){
-            board[y-2][x+2] = "l2";
+          if (board[y-1][x+1] === 1){
+            if (board[y-2][x+2] === 9){
+              board[y-2][x+2] = "l2";
+            }
           }
         }
 
@@ -392,9 +406,6 @@ function mousePressed(){
     console.log("state is 2");
     if (board[b][a] === 1 ){//=== "e"){
       board[b][a] = 3;
-
-
-
 
     }
   }
