@@ -180,19 +180,56 @@ function showPeices() {
       }
 
       if (board[y][x] === "rk"){
-        fill("yellow");
-        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
+        fill("red");
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);    //draws red king
+        fill(0);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize/2, cellSize/2);
       }
 
 
 
 
+      if (board[y][x] === "q" && state === 2){
+        fill(0, 255, 0);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);    //change board to move red king
+        fill(0);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize/2, cellSize/2);
+
+        if (y + 2 < 8 && y - 2 >= 0){
+          if (board[y-1][x+1] === 2){
+            if (board[y-2][x+2] === 9){
+              board[y-2][x+2] = "p1";          // k is for red piece to jump black piece
+            }
+          }
+          if (board[y-1][x-1] === 2){
+            if (board[y-2][x-2] === 9){
+              board[y-2][x-2] = "p2";
+            }
+          }
+        }
+        if (board[y-1][a+1] !== 9 && board[y-1][a-1] !== 9){
+          state = 3;
+        }
+        if (y + 1 < 8 || y - 1 >= 0){
+
+          if (board[y-1][x+1] === 9){
+            board[y-1][x+1] = "u";                          //m is for red moving
+          }
+          if (board[y-1][x-1] === 9){
+            board[y-1][x-1] = "u";
+          }
+          
+          state = 3;
+        }
+
+
+
+      }
+
 
       if (board[y][x] === 3 && state === 2) {
         fill(0, 255, 0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
-
-
 
         if (y + 2 < 8) {  // only check this if there is space on the board...
 
@@ -212,17 +249,16 @@ function showPeices() {
           state = 3;
         }
 
-        if (board[y+1][x+1] === 9){
-          board[y+1][x+1] = "m";
-          if (y === 7){
-            board[y][x] = "rk";
-          }        //m is for red moving
-        }
-        if (board[y+1][x-1] === 9){
-          board[y+1][x-1] = "m";
+        if (y + 1 < 8){
 
+          if (board[y+1][x+1] === 9){
+            board[y+1][x+1] = "m";                          //m is for red moving
+          }
+          if (board[y+1][x-1] === 9){
+            board[y+1][x-1] = "m";
+          }
+          state = 3;
         }
-        state = 3;
       }
 
 
@@ -247,7 +283,7 @@ function showPeices() {
         }
       }
       if (state !== 6){
-        if (board[y][x] === "l"){
+        if (board[y][x] === "l1" || board[y][x] === "l2"){
           board[y][x] = 9;
         }
       }
@@ -404,16 +440,18 @@ function mousePressed(){
 
   if (state === 2){
     console.log("state is 2");
-    if (board[b][a] === 1 ){//=== "e"){
+    if (board[b][a] === 1 ){
       board[b][a] = 3;
-
+    }
+    if (board[b][a] === "rk"){
+      board[b][a] = "q";
     }
   }
 
   else if (state === 3){
     console.log("state is 3");
 
-    if (board[b][a] === 3){
+    if (board[b][a] === 3){     //deselect red piece
       board[b][a] = 1;
       state = 2;
     }
@@ -421,8 +459,15 @@ function mousePressed(){
 
     if (board[b][a] === "m"){
       console.log("was a 0");   //move red piece
-      board[b][a] = 1;
-      state = 22;
+      if (b ===  7){
+        board[b][a] = "rk";
+        state = 22;
+      }
+      else{
+        board[b][a] = 1;
+        state = 22;
+      }
+
     }
     if (board[b][a] === "k2"){
       board[b][a] = 1;
