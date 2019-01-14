@@ -77,7 +77,7 @@ function checkState(){
     console.log("state 4");
     for (let i = 0; i < 8; i ++){
       for (let j = 0; j < 8; j ++){
-        if (board[i][j] === 3){
+        if (board[i][j] === 3 || board[i][j] === "q"){    //removes any possible jumps for red pieces
           board[i][j] = 9;
           state = 5;
         }
@@ -100,7 +100,7 @@ function checkState(){
     showPeices();
     console.log("state 7");
     for (let i = 0; i < 8; i ++){
-      for (let j = 0; j < 8; j ++){
+      for (let j = 0; j < 8; j ++){ //removes any black pieces possible jumps
         if (board[i][j] === 4){
           board[i][j] = 9;
           state = 2;
@@ -111,7 +111,7 @@ function checkState(){
   if (state === 22){
     for (let x = 0; x < 8; x++) {
       for (let y = 0; y < 8; y++) {
-        if (board[y][x] === "m"){
+        if (board[y][x] === "m" || board[y][x] === "u"){
           board[y][x] = 9;
         }
         state = 4;
@@ -210,7 +210,7 @@ function showPeices() {
         if (board[y-1][a+1] !== 9 && board[y-1][a-1] !== 9){
           state = 3;
         }
-        if (y + 1 < 8 || y - 1 >= 0){
+        if (y - 1 < 8){
 
           if (board[y-1][x+1] === 9){
             board[y-1][x+1] = "u";                          //m is for red moving
@@ -218,7 +218,17 @@ function showPeices() {
           if (board[y-1][x-1] === 9){
             board[y-1][x-1] = "u";
           }
-          
+
+          state = 3;
+        }
+        if (y + 1 < 8){
+          if (board[y+1][x+1] === 9){
+            board[y+1][x+1] = "u";                          //m is for red moving
+          }
+          if (board[y+1][x-1] === 9){
+            board[y+1][x-1] = "u";
+          }
+
           state = 3;
         }
 
@@ -299,6 +309,29 @@ function showPeices() {
         fill(75);
         ellipse(x*cellSize + 50, y*cellSize + 50, cellSize - 1, cellSize - 1);
       }
+
+      if (board[y][x] === "bk"){
+        fill(75);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);    //draws red king
+        fill(0);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize/2, cellSize/2);
+      }
+
+
+
+
+      if (board[y][x] === "w" && state === 2){
+        fill(0, 255, 0);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
+        fill(0);
+        ellipse(x*cellSize+50, y*cellSize+50, cellSize/2, cellSize/2);
+
+
+
+      }
+
+
+
 
 
       if (board[y][x] === 4 && state === 5){
@@ -459,7 +492,7 @@ function mousePressed(){
 
     if (board[b][a] === "m"){
       console.log("was a 0");   //move red piece
-      if (b ===  7){
+      if (b === 7){
         board[b][a] = "rk";
         state = 22;
       }
@@ -507,8 +540,14 @@ function mousePressed(){
     console.log("state is 6");      //move black piece
 
     if (board[b][a] === 4){
-      board[b][a] = 2;
-      state = 5;
+      if (b === 1){
+        board[b][a] = "w";
+        state = 5;
+      }
+      else{
+        board[b][a] = 2;
+        state = 5;
+      }
     }
 
     if (board[b][a] === 0){
@@ -538,5 +577,9 @@ function mousePressed(){
       }
       state = 7;
     }
+  }
+  if (board[b][a] === "u"){
+    board[b][a] = "rk";
+    state = 22;
   }
 }
