@@ -212,6 +212,17 @@ function showPeices() {
         }
         if (y - 1 < 8){
 
+          if (board[y-1][x-1] === 2){
+            if (board[y-2][x-2] === 9){
+              board[y-2][x-2] = "u2";
+            }
+          }
+
+          if (board[y-1][x+1] === 2){
+            if (board[y-2][x+2] === 9){
+              board[y-2][x+2] = "u1";          // k is for red piece to jump black piece
+            }
+          }
           if (board[y-1][x+1] === 9){
             board[y-1][x+1] = "u";                          //m is for red moving
           }
@@ -222,6 +233,8 @@ function showPeices() {
           state = 3;
         }
         if (y + 1 < 8){
+
+
           if (board[y+1][x+1] === 9){
             board[y+1][x+1] = "u";                          //m is for red moving
           }
@@ -515,11 +528,6 @@ function mousePressed(){
       if (board[b-1][a-1] === 2){
         board[b-1][a-1] = 9;
       }
-
-
-
-
-
       state = 22;
     }
   }
@@ -582,4 +590,21 @@ function mousePressed(){
     board[b][a] = "rk";
     state = 22;
   }
+
+  if (board[b][a] === "u2"){
+    board[b][a] = "rk";
+    if (board[b+1][a+1] === 2){
+      board[b+1][a+1] = 9;
+    }
+
+    state = 22;
+  }
+  if (board[b][a] === "u1"){
+    board[b][a] = "rk";
+    if (board[b+1][a-1] === 2){
+      board[b+1][a-1] = 9;
+    }
+    state = 22;
+  }
+
 }
