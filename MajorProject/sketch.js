@@ -111,7 +111,7 @@ function checkState(){
   if (state === 22){
     for (let x = 0; x < 8; x++) {
       for (let y = 0; y < 8; y++) {
-        if (board[y][x] === "m" || board[y][x] === "u"){
+        if (board[y][x] === "m" || board[y][x] === "u" || board[y][x] === "u1" || board[y][x] === "u2" || board[y][x] === "u3" || board[y][x] === "u4"){
           board[y][x] = 9;
         }
         state = 4;
@@ -195,22 +195,22 @@ function showPeices() {
         fill(0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize/2, cellSize/2);
 
-        if (y + 2 < 8 && y - 2 >= 0){
-          if (board[y-1][x+1] === 2){
-            if (board[y-2][x+2] === 9){
-              board[y-2][x+2] = "p1";          // k is for red piece to jump black piece
-            }
-          }
-          if (board[y-1][x-1] === 2){
-            if (board[y-2][x-2] === 9){
-              board[y-2][x-2] = "p2";
-            }
-          }
-        }
+        // if (y + 2 < 8 && y - 2 >= 0){
+        //   // if (board[y-1][x+1] === 2){
+        //   //   if (board[y-2][x+2] === 9){
+        //   //     board[y-2][x+2] = "u1";          // k is for red piece to jump black piece
+        //   //   }
+        //   // }
+        //   // if (board[y-1][x-1] === 2){
+        //   //   if (board[y-2][x-2] === 9){
+        //   //     board[y-2][x-2] = "u2";
+        //   //   }
+        //   // }
+        // }
         if (board[y-1][a+1] !== 9 && board[y-1][a-1] !== 9){
           state = 3;
         }
-        if (y - 1 < 8){
+        if (y + 1 < 8){
 
           if (board[y-1][x-1] === 2){
             if (board[y-2][x-2] === 9){
@@ -221,6 +221,18 @@ function showPeices() {
           if (board[y-1][x+1] === 2){
             if (board[y-2][x+2] === 9){
               board[y-2][x+2] = "u1";          // k is for red piece to jump black piece
+            }
+          }
+          if (y - 1 >= 0){
+            if (board[y+1][x+1] === 2){
+              if (board[y+2][x+2] === 9){
+                board[y+2][x+2] = "u4";          // k is for red piece to jump black piece
+              }
+            }
+            if (board[y+1][x-1] === 2){
+              if (board[y+2][x-2] === 9){
+                board[y+2][x-2] = "u3";          // k is for red piece to jump black piece
+              }
             }
           }
           if (board[y-1][x+1] === 9){
@@ -606,5 +618,18 @@ function mousePressed(){
     }
     state = 22;
   }
-
+  if (board[b][a] === "u3"){
+    board[b][a] = "rk";
+    if (board[b-1][a+1] === 2){
+      board[b-1][a+1] = 9;
+    }
+    state = 22;
+  }
+  if (board[b][a] === "u4"){
+    board[b][a] = "rk";
+    if (board[b-1][a-1] === 2){
+      board[b-1][a-1] = 9;
+    }
+    state = 22;
+  }
 }
