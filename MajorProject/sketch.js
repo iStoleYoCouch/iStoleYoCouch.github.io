@@ -334,8 +334,8 @@ function showPeices() {
 
 /////////////////////////////////////////////////////
 
-      if (board[y][x] === "w" && state === 5){
-        fill(75);
+      if (board[y][x] === "w" && state === 7){
+        fill("blue");
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
         fill(255);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize/2, cellSize/2);
@@ -568,8 +568,8 @@ function mousePressed(){
         board[b][a] = 1;
         state = 22;
       }
-
     }
+
     if (board[b][a] === "k2"){
       if (b === 7){
         board[b][a] = "rk";
@@ -611,6 +611,10 @@ function mousePressed(){
     if (board[b][a] === 2 ){
       board[b][a] = 4;
     }
+    if (board[b][a] === "bk"){
+      board[b][a] = "w";
+      state = 7;
+    }
   }
 
 
@@ -633,8 +637,20 @@ function mousePressed(){
     if (board[b][a] === 0){
       state = 6;
     }
+    ///////////////////
 
+    /////////////////////////
 
+    if (board[b][a] === "t"){
+      if (b === 0){
+        board[b][a] = "bk";
+        state = 7;
+      }
+      else{
+        board[b][a] = 2;
+        state = 7;
+      }
+    }
 
     if (board[b][a] === "t"){
       console.log("was a 0");
