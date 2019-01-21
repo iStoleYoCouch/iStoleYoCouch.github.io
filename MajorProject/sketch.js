@@ -95,6 +95,8 @@ function checkState(){
 
 
 
+
+
   if (state === 7){
     displayGrid();
     showPeices();
@@ -195,7 +197,7 @@ function showPeices() {
         fill(0);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize/2, cellSize/2);
 
-        if (y + 2 < 8 && y - 2 >= 0){
+        if (y - 2 >= 0){
           if (board[y-1][x+1] === 2 || board[y-1][x+1] === "bk"){
             if (board[y-2][x+2] === 9){
               board[y-2][x+2] = "u1";          // k is for red piece to jump black piece
@@ -206,6 +208,8 @@ function showPeices() {
               board[y-2][x-2] = "u2";
             }
           }
+        }
+        if (y + 2 < 8){
           if (board[y+1][x+1] === 2 || board[y+1][x+1] === "bk"){
             if (board[y+2][x+2] === 9){
               board[y+2][x+2] = "u4";
@@ -616,7 +620,6 @@ function mousePressed(){
     }
     if (board[b][a] === "bk"){
       board[b][a] = "w";
-      // state = 7;
     }
   }
 
@@ -625,6 +628,11 @@ function mousePressed(){
     a = floor(mouseX / cellSize);
     b = floor(mouseY / cellSize);
     console.log("state is 6");      //move black piece
+
+
+
+
+
 
     if (board[b][a] === 4){
       if (b === 1){
@@ -640,7 +648,7 @@ function mousePressed(){
     if (board[b][a] === 0){
       state = 6;
     }
-    ///////////////////
+    /////////////////////////
 
     /////////////////////////
 
@@ -663,20 +671,44 @@ function mousePressed(){
 
 
     if (board[b][a] === "l1"){
-      board[b][a] = 2;
-      if (board[b+1][a+1] === 1 || board[b+1][a+1] === "rk"){
-        board[b+1][a+1] = 9;
+      if (b === 0){
+        board[b][a] = "bk";
+        if (board[b+1][a+1] === 1 || board[b+1][a+1] === "rk"){
+          board[b+1][a+1] = 9;
+        }
+        state = 7;
       }
-      state = 7;
+      else {
+        board[b][a] = 2;
+        if (board[b+1][a+1] === 1 || board[b+1][a+1] === "rk"){
+          board[b+1][a+1] = 9;
+        }
+        state = 7;
+      }
+
+
     }
+
+
     if (board[b][a] === "l2"){
-      board[b][a] = 2;
-      if (board[b+1][a-1] === 1 || board[b+1][a-1] === "rk"){
-        board[b+1][a-1] = 9;
+      if (b === 0){
+        board[b][a] = "bk";
+        if (board[b+1][a-1] === 1 || board[b+1][a-1] === "rk"){
+          board[b+1][a-1] = 9;
+        }
+        state = 7;
       }
-      state = 7;
+      else {
+        board[b][a] = 2;
+        if (board[b+1][a-1] === 1 || board[b+1][a-1] === "rk"){
+          board[b+1][a-1] = 9;
+        }
+        state = 7;
+      }
     }
   }
+
+
   if (board[b][a] === "u"){
     board[b][a] = "rk";
     state = 22;
