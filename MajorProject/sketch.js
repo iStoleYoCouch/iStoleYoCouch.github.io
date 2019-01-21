@@ -101,7 +101,7 @@ function checkState(){
     console.log("state 7");
     for (let i = 0; i < 8; i ++){
       for (let j = 0; j < 8; j ++){ //removes any black pieces possible jumps
-        if (board[i][j] === 4){
+        if (board[i][j] === 4 || board[i][j] === "w" || board[i][j] === "g" || board[i][j] === "g1" || board[i][j] === "g2" || board[i][j] === "g3" || board[i][j] === "g4"){
           board[i][j] = 9;
           state = 2;
         }
@@ -144,7 +144,7 @@ function checkState(){
 function isThereATwoOnTheBoard(){
   for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
-      if (board[y][x] === 2 || board[y][x] === 4){
+      if (board[y][x] === 2 || board[y][x] === 4 || board[y][x] === "bk"){
         return true;
       }
     }
@@ -157,7 +157,7 @@ function isThereATwoOnTheBoard(){
 function isThereAOneOnTheBoard(){
   for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
-      if (board[y][x] === 1 || board[y][x] === 3){
+      if (board[y][x] === 1 || board[y][x] === 3 || board[y][x] === "rk"){
         return true;
       }
     }
@@ -196,22 +196,22 @@ function showPeices() {
         ellipse(x*cellSize+50, y*cellSize+50, cellSize/2, cellSize/2);
 
         if (y + 2 < 8 && y - 2 >= 0){
-          if (board[y-1][x+1] === 2){
+          if (board[y-1][x+1] === 2 || board[y-1][x+1] === "bk"){
             if (board[y-2][x+2] === 9){
               board[y-2][x+2] = "u1";          // k is for red piece to jump black piece
             }
           }
-          if (board[y-1][x-1] === 2){
+          if (board[y-1][x-1] === 2 || board[y-1][x-1] === "bk"){
             if (board[y-2][x-2] === 9){
               board[y-2][x-2] = "u2";
             }
           }
-          if (board[y+1][x+1] === 2){
+          if (board[y+1][x+1] === 2 || board[y+1][x+1] === "bk"){
             if (board[y+2][x+2] === 9){
               board[y+2][x+2] = "u4";
             }
           }
-          if (board[y+1][x-1] === 2){
+          if (board[y+1][x-1] === 2 || board[y+1][x-1] === "bk"){
             if (board[y+2][x-2] === 9){
               board[y+2][x-2] = "u3";
             }
@@ -257,12 +257,12 @@ function showPeices() {
 
         if (y + 2 < 8) {  // only check this if there is space on the board...
 
-          if (board[y+1][x+1] === 2){
+          if (board[y+1][x+1] === 2 || board[y+1][x+1] === "bk"){
             if (board[y+2][x+2] === 9){
               board[y+2][x+2] = "k1";          // k is for red piece to jump black piece
             }
           }
-          if (board[y+1][x-1] === 2){
+          if (board[y+1][x-1] === 2 || board[y+1][x-1] === "bk"){
             if (board[y+2][x-2] === 9){
               board[y+2][x-2] = "k2";
             }
@@ -334,35 +334,38 @@ function showPeices() {
 
 /////////////////////////////////////////////////////
 
-      if (board[y][x] === "w" && state === 7){
+      if (board[y][x] === "w" && state === 5 || board[y][x] === "w" && state === 3){
         fill("blue");
         ellipse(x*cellSize+50, y*cellSize+50, cellSize - 1, cellSize - 1);
         fill(255);
         ellipse(x*cellSize+50, y*cellSize+50, cellSize/2, cellSize/2);
 
 
-        if (y + 2 < 8 && y - 2 >= 0){
-          if (board[y-1][x+1] === 1){
+        if (y - 2 >= 0){
+          if (board[y-1][x+1] === 1 || board[y-1][x+1] === "rk"){
             if (board[y-2][x+2] === 9){
               board[y-2][x+2] = "g1";
             }
           }
-          if (board[y-1][x-1] === 1){
+          if (board[y-1][x-1] === 1 || board[y-1][x-1] === "rk"){
             if (board[y-2][x-2] === 9){
               board[y-2][x-2] = "g2";
             }
           }
-          if (board[y+1][x+1] === 1){
+        }
+        if (y + 2 < 8){
+          if (board[y+1][x+1] === 1 || board[y+1][x+1] === "rk"){
             if (board[y+2][x+2] === 9){
               board[y+2][x+2] = "g4";
             }
           }
-          if (board[y+1][x-1] === 1){
+          if (board[y+1][x-1] === 1 || board[y+1][x-1] === "rk"){
             if (board[y+2][x-2] === 9){
               board[y+2][x-2] = "g3";
             }
           }
         }
+
         // if (board[y-1][a+1] !== 9 && board[y-1][a-1] !== 9){
         //   state = 3;
         // }
@@ -377,7 +380,7 @@ function showPeices() {
             board[y-1][x-1] = "g";
           }
 
-          state = 3;
+          state = 5;
         }
 
         if (y + 1 < 8){
@@ -388,7 +391,7 @@ function showPeices() {
             board[y+1][x-1] = "g";
           }
 
-          state = 3;
+          state = 5;
         }
 
       }
@@ -404,12 +407,12 @@ function showPeices() {
 
 
         if (y - 2 >= 0) {
-          if (board[y-1][x-1] === 1){
+          if (board[y-1][x-1] === 1 || board[y-1][x-1] === "rk"){
             if (board[y-2][x-2] === 9){
               board[y-2][x-2] = "l1";          //l is for black to jump red
             }
           }
-          if (board[y-1][x+1] === 1){
+          if (board[y-1][x+1] === 1 || board[y-1][x+1] === "rk"){
             if (board[y-2][x+2] === 9){
               board[y-2][x+2] = "l2";
             }
@@ -573,14 +576,14 @@ function mousePressed(){
     if (board[b][a] === "k2"){
       if (b === 7){
         board[b][a] = "rk";
-        if (board[b-1][a+1] === 2){
+        if (board[b-1][a+1] === 2 || board[b-1][a+1] === "bk"){
           board[b-1][a+1] = 9;
         }
         state = 22;
       }
       else{
         board[b][a] = 1;
-        if (board[b-1][a+1] === 2){
+        if (board[b-1][a+1] === 2 || board[b-1][a+1] === "bk"){
           board[b-1][a+1] = 9;
         }
         state = 22;
@@ -589,14 +592,14 @@ function mousePressed(){
     if (board[b][a] === "k1"){
       if (b === 7){
         board[b][a] = "rk";
-        if (board[b-1][a-1] === 2){
+        if (board[b-1][a-1] === 2 || board[b-1][a-1] === "bk"){
           board[b-1][a-1] = 9;
         }
         state = 22;
       }
       else{
         board[b][a] = 1;
-        if (board[b-1][a-1] === 2){
+        if (board[b-1][a-1] === 2 || board[b-1][a-1] === "bk"){
           board[b-1][a-1] = 9;
         }
         state = 22;
@@ -613,7 +616,7 @@ function mousePressed(){
     }
     if (board[b][a] === "bk"){
       board[b][a] = "w";
-      state = 7;
+      // state = 7;
     }
   }
 
@@ -626,7 +629,7 @@ function mousePressed(){
     if (board[b][a] === 4){
       if (b === 1){
         board[b][a] = "w";
-        state = 5;
+        state = 6;
       }
       else{
         board[b][a] = 2;
@@ -661,14 +664,14 @@ function mousePressed(){
 
     if (board[b][a] === "l1"){
       board[b][a] = 2;
-      if (board[b+1][a+1] === 1){
+      if (board[b+1][a+1] === 1 || board[b+1][a+1] === "rk"){
         board[b+1][a+1] = 9;
       }
       state = 7;
     }
     if (board[b][a] === "l2"){
       board[b][a] = 2;
-      if (board[b+1][a-1] === 1){
+      if (board[b+1][a-1] === 1 || board[b+1][a-1] === "rk"){
         board[b+1][a-1] = 9;
       }
       state = 7;
@@ -681,7 +684,7 @@ function mousePressed(){
 
   if (board[b][a] === "u2"){
     board[b][a] = "rk";
-    if (board[b+1][a+1] === 2){
+    if (board[b+1][a+1] === 2 || board[b+1][a+1] === "bk"){
       board[b+1][a+1] = 9;
     }
 
@@ -689,23 +692,59 @@ function mousePressed(){
   }
   if (board[b][a] === "u1"){
     board[b][a] = "rk";
-    if (board[b+1][a-1] === 2){
+    if (board[b+1][a-1] === 2 || board[b+1][a-1] === "bk"){
       board[b+1][a-1] = 9;
     }
     state = 22;
   }
   if (board[b][a] === "u3"){
     board[b][a] = "rk";
-    if (board[b-1][a+1] === 2){
+    if (board[b-1][a+1] === 2 || board[b-1][a+1] === "bk"){
       board[b-1][a+1] = 9;
     }
     state = 22;
   }
   if (board[b][a] === "u4"){
     board[b][a] = "rk";
-    if (board[b-1][a-1] === 2){
+    if (board[b-1][a-1] === 2 || board[b-1][a-1] === "bk"){
       board[b-1][a-1] = 9;
     }
     state = 22;
   }
+
+  if (board[b][a] === "g"){
+    board[b][a] = "bk";
+    state = 7;
+  }
+  if (board[b][a] === "g2"){
+    board[b][a] = "bk";
+    if (board[b+1][a+1] === 1 || board[b+1][a+1] === "rk"){
+      board[b+1][a+1] = 9;
+    }
+
+    state = 7;
+  }
+  if (board[b][a] === "g1"){
+    board[b][a] = "bk";
+    if (board[b+1][a-1] === 1 || board[b+1][a-1] === "rk"){
+      board[b+1][a-1] = 9;
+    }
+    state = 7;
+  }
+  if (board[b][a] === "g3"){
+    board[b][a] = "bk";
+    if (board[b-1][a+1] === 1 || board[b-1][a+1] === "rk"){
+      board[b-1][a+1] = 9;
+    }
+    state = 7;
+  }
+  if (board[b][a] === "g4"){
+    board[b][a] = "bk";
+    if (board[b-1][a-1] === 1 || board[b-1][a-1] === "rk"){
+      board[b-1][a-1] = 9;
+    }
+    state = 7;
+  }
+
+
 }
